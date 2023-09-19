@@ -1,8 +1,8 @@
 vim.g.mapleader = " "
 
 function setKeyMap(mode, key, mapper)
-  -- vim.keymap.set(mode, key, mapper, { silent = true })
-  vim.keymap.set(mode, key, mapper)
+	-- vim.keymap.set(mode, key, mapper, { silent = true })
+	vim.keymap.set(mode, key, mapper)
 end
 
 -- general keymaps
@@ -12,22 +12,13 @@ setKeyMap("n", "<leader>nh", ":nohl<CR>") -- clear search highlights
 setKeyMap("n", "<leader>=", "<C-a>") -- increase a number
 setKeyMap("n", "<leader>-", "<C-x>") -- decrease
 
-setKeyMap("n", "<C-s>", "<cmd>SessionSave<CR>:wa<CR>")
-setKeyMap("v", "<leader>y", '"+y')
-setKeyMap("v", "<leader>p", '"+p')
-
 setKeyMap("n", "<C-d>", "<C-d>zz")
 setKeyMap("n", "<C-u>", "<C-u>zz")
-
-setKeyMap("n", "w", "wzz")
-setKeyMap("n", "b", "bzz")
 
 setKeyMap("n", "n", "nzzzv")
 setKeyMap("n", "N", "Nzzzv")
 
-setKeyMap("x", "p", '"_dP')
-
--- setKeyMap("x", "<Tab>", "gv=")
+setKeyMap("x", "<leader>p", '"_dP')
 
 -- Move text up and down
 setKeyMap("n", "<A-j>", ":m .+1<CR>==")
@@ -67,26 +58,26 @@ setKeyMap("n", "<S-k>", "10<C-Y>")
 ----------------------
 
 -- nvim-maximizer
---setKeyMap("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
+setKeyMap("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
 -- nvim-tree
---setKeyMap("n", "<leader>e", ":NvimTreeToggle<CR>")
+setKeyMap("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 -- telescope
---setKeyMap("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
---setKeyMap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
---setKeyMap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
---setKeyMap("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
---setKeyMap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
+setKeyMap("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+setKeyMap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+setKeyMap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
+setKeyMap("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+setKeyMap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 
 -- telescope git commands (not on youtube nvim video)
---setKeyMap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
---setKeyMap("n", "<leader>gf", "<cmd>Telescope git_files<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
---setKeyMap("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
---setKeyMap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
---setKeyMap("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
+setKeyMap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
+setKeyMap("n", "<leader>gf", "<cmd>Telescope git_files<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
+setKeyMap("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
+setKeyMap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
+setKeyMap("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 
 -- bufferline
---setKeyMap("n", "<A-l>", ":bnext<CR>")
---setKeyMap("n", "<A-h>", ":bprevious<CR>")
---setKeyMap("n", "<C-w>", ":Bdelete<CR>")
+setKeyMap("n", "<A-l>", ":bnext<CR>")
+setKeyMap("n", "<A-h>", ":bprevious<CR>")
+setKeyMap("n", "<C-w>", ":Bdelete<CR>")
