@@ -40,3 +40,7 @@ opt.splitbelow = true
 
 -- add keywords
 opt.iskeyword:append("-")
+
+-- fold
+opt.foldenable = false -- auto folden
+opt.foldmethod = "indent" -- indent syntax

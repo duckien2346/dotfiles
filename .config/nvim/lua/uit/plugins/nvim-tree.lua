@@ -20,9 +20,13 @@ return {
       },
       -- change folder arrow icons
       renderer = {
+        indent_width = 2,
         indent_markers = {
           enable = true,
+          inline_arrows = false,
         },
+        -- highlight_git = true,
+        -- highlight_modified = "icon", -- "none", "icon", "name" or "all"
         icons = {
           glyphs = {
             folder = {

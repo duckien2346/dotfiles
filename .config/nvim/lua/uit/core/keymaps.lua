@@ -12,15 +12,15 @@ setKeyMap("n", "<leader>nh", ":nohl<CR>") -- clear search highlights
 setKeyMap("n", "<leader>=", "<C-a>") -- increase a number
 setKeyMap("n", "<leader>-", "<C-x>") -- decrease
 
-setKeyMap("n", "<C-s>", "<cmd>SessionSave<CR>:wa<CR>")
+setKeyMap({ "n", "i" }, "<C-s>", "<ESC><cmd>SessionSave<CR>:wa<CR>")
 setKeyMap("v", "<leader>y", '"+y')
 setKeyMap("v", "<leader>p", '"+p')
 
 setKeyMap("n", "<C-d>", "<C-d>zz")
 setKeyMap("n", "<C-u>", "<C-u>zz")
 
-setKeyMap("n", "w", "wzz")
-setKeyMap("n", "b", "bzz")
+-- setKeyMap("n", "w", "w2zl")
+-- setKeyMap("n", "b", "b2zh")
 
 setKeyMap("n", "n", "nzzzv")
 setKeyMap("n", "N", "Nzzzv")
