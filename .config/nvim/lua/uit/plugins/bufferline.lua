@@ -19,9 +19,10 @@ return {
         -- },
       },
     })
-    setKeyMap("n", "<A-l>", ":bnext<CR>")
-    setKeyMap("n", "<A-h>", ":bprevious<CR>")
-    -- setKeyMap("n", "<C-w>", ":bdelete<CR>")
-    setKeyMap("n", "<C-w>", ":bp<bar>sp<bar>bn<bar>bd<CR>")
+    local opts = { noremap = true, silent = true }
+    vim.keymap.set("n", "<A-l>", ":bnext<CR>", opts)
+    vim.keymap.set("n", "<A-h>", ":bprevious<CR>", opts)
+    -- setvim.keymap."n", "<C-w>", ":bdelete<CR>", opts)
+    vim.keymap.set("n", "<C-w>", ":bp<bar>sp<bar>bn<bar>bd<CR>", opts)
   end,
 }

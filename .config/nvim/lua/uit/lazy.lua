@@ -12,12 +12,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {import = "uit.plugins"},
-  {import = 'uit.plugins.lsp'}
+  { import = "uit.plugins" },
+  { import = "uit.plugins.lsp" },
 }, {
-  install = {
-    colorscheme = { "nightfly" },
-  },
+  -- install = {
+  --   colorscheme = {
+  --     "nightfly",
+  --     "tokyonight-moon",
+  --   },
+  -- },
   checker = {
     enabled = true,
     notify = false,

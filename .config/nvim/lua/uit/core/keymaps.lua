@@ -1,92 +1,95 @@
 vim.g.mapleader = " "
 
-function setKeyMap(mode, key, mapper)
-  -- vim.keymap.set(mode, key, mapper, { silent = true })
-  vim.keymap.set(mode, key, mapper)
-end
+local keymap = vim.keymap
+local opts = { noremap = true, silent = true }
 
--- general keymaps
-setKeyMap("i", "jk", "<ESC>")
-setKeyMap("n", "<leader>nh", ":nohl<CR>") -- clear search highlights
+-- general keymap
+keymap.set("i", "jk", "<ESC>", opts)
+keymap.set("n", "<leader>nh", ":nohl<CR>", opts) -- clear search highlights
 
-setKeyMap("n", "<leader>=", "<C-a>") -- increase a number
-setKeyMap("n", "<leader>-", "<C-x>") -- decrease
+keymap.set("n", "<leader>=", "<C-a>", opts) -- increase a number
+keymap.set("n", "<leader>-", "<C-x>", opts) -- decrease
 
-setKeyMap({ "n", "i" }, "<C-s>", "<ESC><cmd>SessionSave<CR>:wa<CR>")
-setKeyMap("v", "<leader>y", '"+y')
-setKeyMap("v", "<leader>p", '"+p')
+keymap.set({ "n", "i" }, "<C-s>", "<ESC><cmd>SessionSave<CR>:wa<CR>", opts)
+-- keymap.set("i", "<C-z>", "<ESC>ua", opts)
+-- keymap.set("i", "<C-Z>", "<ESC><C-r>a", opts)
+-- keymap.set("i", "<C-o>", "<C-O>o", opts)
+-- keymap.set("i", "<C-O>", "<C-O>O", opts)
 
-setKeyMap("n", "<C-d>", "<C-d>zz")
-setKeyMap("n", "<C-u>", "<C-u>zz")
+keymap.set("v", "<leader>y", '"+y', opts)
+keymap.set("v", "<leader>p", '"+p', opts)
 
--- setKeyMap("n", "w", "w2zl")
--- setKeyMap("n", "b", "b2zh")
+keymap.set("n", "<C-d>", "<C-d>zz", opts)
+keymap.set("n", "<C-u>", "<C-u>zz", opts)
 
-setKeyMap("n", "n", "nzzzv")
-setKeyMap("n", "N", "Nzzzv")
+-- keymap.set("n", "w", "w2zl", opts)
+-- keymap.set("n", "b", "b2zh", opts)
 
-setKeyMap("x", "p", '"_dP')
+keymap.set("n", "n", "nzzzv", opts)
+keymap.set("n", "N", "Nzzzv", opts)
 
--- setKeyMap("x", "<Tab>", "gv=")
+keymap.set("x", "p", '"_dP', opts)
+
+-- keymap.set("x", "<Tab>", "gv=", opts)
 
 -- Move text up and down
-setKeyMap("n", "<A-j>", ":m .+1<CR>==")
-setKeyMap("n", "<A-k>", ":m .-2<CR>==")
-setKeyMap("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
-setKeyMap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
-setKeyMap("v", "<A-k>", ":m .-2<CR>gv=gv")
-setKeyMap("v", "<A-j>", ":m .+1<CR>gv=gv")
+keymap.set("n", "<A-j>", ":m .+1<CR>==", opts)
+keymap.set("n", "<A-k>", ":m .-2<CR>==", opts)
+keymap.set("i", "<A-j>", "<ESC>:m .+1<CR>==gi", opts)
+keymap.set("i", "<A-k>", "<ESC>:m .-2<CR>==gi", opts)
+keymap.set("v", "<A-k>", ":m .-2<CR>gv=gv", opts)
+keymap.set("v", "<A-j>", ":m .+1<CR>gv=gv", opts)
 
 -- Visual Block --
 -- Move text up and down
-setKeyMap("x", "J", ":m '>+1<CR>gv=gv")
-setKeyMap("x", "K", ":m '<-2<CR>gv=gv")
-setKeyMap("x", "<A-j>", ":m '>+1<CR>gv=gv")
-setKeyMap("x", "<A-k>", ":m '<-2<CR>gv=gv")
+-- keymap.set("x", "J", ":m '>+1<CR>gv=gv", opts)
+-- keymap.set("x", "K", ":m '<-2<CR>gv=gv", opts)
+keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
+keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
 -- screen management
-setKeyMap("n", "<leader>sv", "<C-w>v") -- split window vertically
-setKeyMap("n", "<leader>sh", "<C-w>s") -- split window horizontally
-setKeyMap("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
-setKeyMap("n", "<leader>sx", ":close<CR>") -- close current split window
+keymap.set("n", "<leader>sv", ":vert split<CR>", opts) -- split window vertically
+keymap.set("n", "<leader>sh", ":hor split", opts) -- split window horizontally
+keymap.set("n", "<leader>se", ":vert wincmd =", opts) -- make split windows equal width & height
+keymap.set("n", "<leader>sx", ":close<CR>", opts) -- close current split window
 
 -- tab management
-setKeyMap("n", "<leader>to", ":tabnew<CR>") -- open new tab
-setKeyMap("n", "<leader>tx", ":tabclose<CR>") -- close current tab
-setKeyMap("n", "<leader>tn", ":tabn<CR>") --  go to next tab
-setKeyMap("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
+keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
+keymap.set("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
+keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
+keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- horizontal scroll
-setKeyMap("n", "<S-h>", "10zh") -- Scroll 20 characters to the left
-setKeyMap("n", "<S-l>", "10zl") -- Scroll 20 characters to the right
-setKeyMap("n", "<S-j>", "10<C-E>")
-setKeyMap("n", "<S-k>", "10<C-Y>")
+keymap.set("n", "<S-h>", "20zh", opts) -- Scroll  characters to the left
+keymap.set("n", "<S-l>", "20zl", opts) -- Scroll  characters to the right
+keymap.set("n", "<S-j>", "10<C-d>zz", opts)
+keymap.set("n", "<S-k>", "10<C-u>zz", opts)
 
 ----------------------
 -- Plugin Keybinds
 ----------------------
 
 -- nvim-maximizer
---setKeyMap("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
+--keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", opts) -- toggle split window maximization
 
 -- nvim-tree
---setKeyMap("n", "<leader>e", ":NvimTreeToggle<CR>")
+--keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- telescope
---setKeyMap("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
---setKeyMap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
---setKeyMap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
---setKeyMap("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
---setKeyMap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
+--keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts) -- find files within current working directory, respects .gitignore
+--keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in current working directory as you type
+--keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts) -- find string under cursor in current working directory
+--keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
+--keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- list available help tags
 
--- telescope git commands (not on youtube nvim video)
---setKeyMap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
---setKeyMap("n", "<leader>gf", "<cmd>Telescope git_files<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
---setKeyMap("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
---setKeyMap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
---setKeyMap("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
+-- telescope git commands (not on youtube nvim video, opts)
+--keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
+--keymap.set("n", "<leader>gf", "<cmd>Telescope git_files<cr>", opts) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
+--keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>", opts) -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
+--keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", opts) -- list git branches (use <cr> to checkout) ["gb" for git branch]
+--keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>", opts) -- list current changes per file with diff preview ["gs" for git status]
 
 -- bufferline
---setKeyMap("n", "<A-l>", ":bnext<CR>")
---setKeyMap("n", "<A-h>", ":bprevious<CR>")
---setKeyMap("n", "<C-w>", ":Bdelete<CR>")
+--keymap.set("n", "<A-l>", ":bnext<CR>", opts)
+--keymap.set("n", "<A-h>", ":bprevious<CR>", opts)
+--keymap.set("n", "<C-w>", ":Bdelete<CR>", opts)

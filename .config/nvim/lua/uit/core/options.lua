@@ -1,46 +1,44 @@
-local opt = vim.opt -- for conciseness
-
 -- line numbers
-opt.number = true
-opt.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- tabs & indentation
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.softtabstop = 2
-opt.expandtab = true
-opt.autoindent = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
 
 -- line wrapping
-opt.wrap = false
+vim.opt.wrap = false
 
 -- search settings
-opt.ignorecase = true
-opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- cursor line
-opt.cursorline = true
--- opt.guicursor = ""
+vim.opt.cursorline = true
+-- vim.opt.guicursor = ""
 
 -- appearance
-opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
-opt.scrolloff = 8
+vim.opt.termguicolors = true
+-- vim.opt.background = "dark"
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 8
 
 -- backspace
-opt.backspace = "indent,eol,start"
+vim.opt.backspace = "indent,eol,start"
 
 -- clipboard
-opt.clipboard:append("unnamedplus")
+vim.opt.clipboard:append("unnamedplus")
 
 -- split windows
-opt.splitright = true
-opt.splitbelow = true
+vim.opt.splitright = false
+vim.opt.splitbelow = true
 
 -- add keywords
-opt.iskeyword:append("-")
+vim.opt.iskeyword:append("-")
 
 -- fold
-opt.foldenable = false -- auto folden
-opt.foldmethod = "indent" -- indent syntax
+vim.opt.foldenable = false -- auto folden
+vim.opt.foldmethod = "indent" -- indent syntax
