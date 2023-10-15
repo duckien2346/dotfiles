@@ -33,11 +33,12 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.clipboard:append("unnamedplus")
 
 -- split windows
-vim.opt.splitright = false
+vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- add keywords
 vim.opt.iskeyword:append("-")
+vim.opt.isfname:append("@-@")
 
 -- fold
 vim.opt.foldenable = false -- auto folden

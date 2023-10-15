@@ -10,6 +10,7 @@ return {
 
     -- change color for arrows in tree to light blue
     vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
+    vim.cmd([[ highlight NvimTreeWinSeparator guifg=#3FC5FF ]])
 
     -- configure nvim-tree
     nvimtree.setup({
@@ -47,10 +48,13 @@ return {
         },
       },
       filters = {
-        custom = { ".DS_Store" },
+        dotfiles = false,
+        git_clean = false,
+        no_buffer = false,
+        custom = { ".DS_Store", "bin", ".vscode", ".idea" },
       },
       git = {
-        ignore = false,
+        ignore = true,
       },
     })
 

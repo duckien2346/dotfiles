@@ -1,166 +1,179 @@
 return {
-  "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
-  dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    { "antosha417/nvim-lsp-file-operations", config = true },
-  },
-  config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
-    local util = require("lspconfig.util")
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+        "hrsh7th/cmp-nvim-lsp",
+        { "antosha417/nvim-lsp-file-operations", config = true },
+        -- "mason.nvim",
+        -- "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "Hoffs/omnisharp-extended-lsp.nvim",
+    },
+    config = function()
+        -- import lspconfig plugin
+        require("mason-lspconfig").setup({})
+        local lspconfig = require("lspconfig")
+        local util = require("lspconfig.util")
+        local omnisharp_extended = require("omnisharp_extended")
 
-    -- import cmp-nvim-lsp plugin
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        -- import cmp-nvim-lsp plugin
+        local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-    local keymap = vim.keymap -- for conciseness
+        local keymap = vim.keymap -- for conciseness
 
-    local opts = { noremap = true, silent = true }
-    local on_attach = function(client, bufnr)
-      vim.api.nvim_set_current_dir(client.config.root_dir)
+        local opts = { noremap = true, silent = true }
+        local on_attach = function(client, bufnr)
+            vim.api.nvim_set_current_dir(client.config.root_dir)
 
-      opts.buffer = bufnr
+            opts.buffer = bufnr
 
-      -- set keybinds
-      opts.desc = "Show LSP references"
-      keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+            -- set keybinds
+            opts.desc = "Show LSP references"
+            keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
-      opts.desc = "Go to declaration"
-      -- keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
-      keymap.set("n", "gD", vim.lsp.buf.hover, opts) -- go to declaration
+            opts.desc = "Go to declaration"
+            -- keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+            keymap.set("n", "gD", vim.lsp.buf.hover, opts) -- go to declaration
 
-      opts.desc = "Show LSP definitions"
-      keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+            opts.desc = "Show LSP definitions"
+            -- keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+            keymap.set("n", "gd", function () omnisharp_extended.telescope_lsp_definitions() end, opts) -- show lsp definitions
 
-      opts.desc = "Show LSP implementations"
-      keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+            opts.desc = "Show LSP implementations"
+            keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
 
-      opts.desc = "Show LSP type definitions"
-      keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+            opts.desc = "Show LSP type definitions"
+            keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
-      opts.desc = "See available code actions"
-      keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+            opts.desc = "See available code actions"
+            keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
-      opts.desc = "Smart rename"
-      keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+            opts.desc = "Smart rename"
+            keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
-      opts.desc = "Show buffer diagnostics"
-      keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+            opts.desc = "Show buffer diagnostics"
+            keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
-      opts.desc = "Show line diagnostics"
-      keymap.set("n", "<leader>dd", vim.diagnostic.open_float, opts) -- show diagnostics for line
+            opts.desc = "Show line diagnostics"
+            keymap.set("n", "<leader>dd", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
-      opts.desc = "Go to previous diagnostic"
-      keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+            opts.desc = "Go to previous diagnostic"
+            keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
 
-      opts.desc = "Go to next diagnostic"
-      keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+            opts.desc = "Go to next diagnostic"
+            keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
 
-      -- opts.desc = "Show documentation for what is under cursor"
-      -- keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+            -- opts.desc = "Show documentation for what is under cursor"
+            -- keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
-      opts.desc = "Restart LSP"
-      keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
-    end
+            opts.desc = "Restart LSP"
+            keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+        end
 
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
+        -- used to enable autocompletion (assign to every lsp server config)
+        local capabilities = cmp_nvim_lsp.default_capabilities()
 
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
-    -- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    -- for type, icon in pairs(signs) do
-    --   local hl = "DiagnosticSign" .. type
-    --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    -- end
+        -- Change the Diagnostic symbols in the sign column (gutter)
+        -- (not in youtube nvim video)
+        -- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+        -- for type, icon in pairs(signs) do
+        --   local hl = "DiagnosticSign" .. type
+        --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        -- end
 
-    -- configure lua server (with special settings)
-    lspconfig["lua_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = { -- custom settings for lua
-        Lua = {
-          -- make the language server recognize "vim" global
-          diagnostics = {
-            globals = { "vim" },
-          },
-          workspace = {
-            -- make language server aware of runtime files
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
+        -- configure lua server (with special settings)
+        lspconfig["lua_ls"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = { -- custom settings for lua
+                Lua = {
+                    -- make the language server recognize "vim" global
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        -- make language server aware of runtime files
+                        library = {
+                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            [vim.fn.stdpath("config") .. "/lua"] = true,
+                        },
+                    },
+                },
             },
-          },
-        },
-      },
-    })
+        })
 
-    -- configure html server
-    lspconfig["html"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+        -- configure html server
+        lspconfig["html"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
 
-    -- configure typescript server with plugin
-    lspconfig["tsserver"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+        -- configure typescript server with plugin
+        lspconfig["tsserver"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
 
-    -- configure css server
-    lspconfig["cssls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+        -- configure css server
+        lspconfig["cssls"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
 
-    -- configure tailwindcss server
-    lspconfig["tailwindcss"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+        -- configure tailwindcss server
+        lspconfig["tailwindcss"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
 
-    -- configure graphql language server
-    -- lspconfig["graphql"].setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    --   filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-    -- })
+        -- configure graphql language server
+        -- lspconfig["graphql"].setup({
+        --   capabilities = capabilities,
+        --   on_attach = on_attach,
+        --   filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+        -- })
 
-    -- configure emmet language server
-    -- lspconfig["emmet_ls"].setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    --   filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    -- })
+        -- configure emmet language server
+        -- lspconfig["emmet_ls"].setup({
+        --   capabilities = capabilities,
+        --   on_attach = on_attach,
+        --   filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+        -- })
 
-    -- configure python server
-    lspconfig["pyright"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+        -- configure python server
+        -- lspconfig["pyright"].setup({
+        --   capabilities = capabilities,
+        --   on_attach = on_attach,
+        -- })
 
-    -- configure jsonls server
-    lspconfig["jsonls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+        -- configure jsonls server
+        lspconfig["jsonls"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
 
-    -- configure angularls server
-    -- lspconfig["angularls"].setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    -- })
+        -- configure angularls server
+        -- lspconfig["angularls"].setup({
+        --   capabilities = capabilities,
+        --   on_attach = on_attach,
+        -- })
 
-    -- configure omnisharp server
-    lspconfig["omnisharp"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
-      enable_editorconfig_support = true,
-      enable_roslyn_analyzers = true,
-      organize_imports_on_format = true,
-      enable_import_completion = true,
-      enable_ms_build_load_projects_on_demand = false,
-    })
-  end,
+        -- configure omnisharp_mono server ----------- omnisharp_mono only for window
+        -- lspconfig["omnisharp_mono"].setup({})
+
+        -- configure omnisharp server
+        lspconfig["omnisharp"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+            enable_editorconfig_support = true,
+            enable_roslyn_analyzers = true,
+            organize_imports_on_format = true,
+            enable_import_completion = true,
+            enable_ms_build_load_projects_on_demand = false,
+            handlers = {
+                ["textDocument/definition"] = omnisharp_extended.handler,
+            },
+        })
+    end,
 }

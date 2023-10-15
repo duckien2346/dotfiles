@@ -1,8 +1,11 @@
 return {
     "mfussenegger/nvim-dap",
+    -- enabled = false,
     config = function()
-
         local dap = require("dap")
+        require('dap.ext.vscode').load_launchjs()
+        dap.set_log_level('TRACE')
+
         local widgets = require("dap.ui.widgets")
         local frames_sidebar = widgets.sidebar(widgets.frames)
         local widgets_sidebar = widgets.sidebar(widgets.scopes)
@@ -26,14 +29,20 @@ return {
         -- vim.keymap.set({ "n", "v" }, "<Leader>dp", widgets.preview)
         vim.keymap.set("n", "<Leader>df", function()
             -- widgets.centered_float(widgets.frames)
+            vim.opt.splitright = false
             frames_sidebar.toggle()
+            vim.opt.splitright = true
         end)
         vim.keymap.set("n", "<Leader>ds", function()
             -- widgets.centered_float(widgets.scopes)
+            vim.opt.splitright = false
             widgets_sidebar.toggle()
+            vim.opt.splitright = true
         end)
 
         -- vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
-        -- vim.fn.sign_define("DapStopped", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+        -- vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })
+        -- vim.fn.sign_define("DapStopped", { text = "", texthl = "", linehl = "", numhl = "" })
+
     end,
 }
