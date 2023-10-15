@@ -197,9 +197,9 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # assign
 # assign [class="Alacritty"] $ws1
-assign [class="dolphin"] $ws2
+assign [class="dolphin|lf"] $ws2
 assign [class="Google-chrome"] $ws3
-assign [class="Spotify"] $ws10
+assign [class="Spotify|xdman"] $ws10
 
 # open on startup
 exec --no-startup-id nm-applet
