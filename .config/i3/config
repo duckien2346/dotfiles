@@ -155,7 +155,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -201,7 +201,7 @@ gaps outer 0
 default_border none
 default_floating_border pixel 5
 
-mode "exit: [s]creenlock [l]ogout, [r]eboot, [s]hutdown" {
+mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown" {
 
   bindsym l exec i3lock
 
@@ -215,9 +215,10 @@ mode "exit: [s]creenlock [l]ogout, [r]eboot, [s]hutdown" {
 
   bindsym Return mode "default"
 
+  bindsym $mod+x mode "default"
 }
 
-bindsym $mod+x mode "exit: [s]creenlock [l]ogout, [r]eboot, [s]hutdown"
+bindsym $mod+x mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown"
 
 # brightnessctl
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
@@ -258,7 +259,7 @@ for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 # assign
 # assign [class="Alacritty"] $ws1
 assign [class="dolphin|lf"] $ws2
-assign [class="Google-chrome"] $ws3
+assign [class="Google-chrome|Chromium"] $ws3
 assign [class="Spotify|xdman|discord"] $ws10
 
 # open on startup
@@ -269,10 +270,11 @@ exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id ibus engine Bamboo
 exec --no-startup-id alacritty
 exec --no-startup-id discord
+exec --no-startup-id chromium
 # exec --no-startup-id google-chrome-stable
 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/gura-disguish.png
 # exec_always --no-startup-id xrandr --dpi 220 
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60 --pos 0x0 --primary
-exec_always --no-startup-id redshift -P -O 4000
+exec_always --no-startup-id redshift -P -O 3000
 

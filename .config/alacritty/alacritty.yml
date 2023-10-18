@@ -11,7 +11,7 @@ window:
   class:
     instance: Alacritty
     general: Alacritty
-  opacity: 1
+  opacity: 0.8
 
 scrolling:
   history: 10000
@@ -38,7 +38,7 @@ font:
 
 cursor:
   style:
-    shape: Beam
+    shape: Block # Beam
   vi_mode_style:
     shape: Block
 
@@ -54,8 +54,8 @@ selection:
 shell:
   program: /usr/bin/zsh
 
-key_bindings:
-  - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
+# key_bindings:
+#   - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Import additional configuration files
