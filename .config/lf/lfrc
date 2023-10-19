@@ -37,7 +37,8 @@ map ` !true
 # execute current file (must be executable)
 # change to remove
 cmd remove %[ ${2-y} = "y" ] && rm -rv $fx
-map x push :remove<space>([y]/n)<space>
+map d push :remove<space>([y]/n)<space>
+map x cut
 
 # select-all
 cmd select-all :unselect; invert
@@ -101,6 +102,7 @@ cmd extract ${{
         *.7z) 7z x $f;;
     esac
 }}
+map zx push :extract<space>
 
 # compress current file or selected files with tar and gunzip
 cmd tar ${{
@@ -155,5 +157,13 @@ cmd create-tmux-window %{{
     echo "created tmux window '$name'"
 }}
 map w push :create-tmux-window<space>
+
+# copy path to clipboard
+cmd copy-path &{{
+    # echo -n $f | xclip -selection primary
+    echo -n $f | xclip -selection clipboard
+    lf -remote "send $id %echo \"copied path: '$f'\""
+}}
+map <a-c> copy-path
 
 
