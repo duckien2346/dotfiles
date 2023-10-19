@@ -1,5 +1,5 @@
 #!/bin/sh
 
-rsync -auv --ignore-non-existing ~/.config/ .config
-rsync -auv ~/.config/mpv/ .config/mpv
+rsync -auP --ignore-non-existing ~/.config/ .config
+rsync -auP ~/.config/mpv/ .config/mpv
 
