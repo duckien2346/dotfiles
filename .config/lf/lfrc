@@ -38,6 +38,7 @@ map ` !true
 # change to remove
 cmd remove %[ ${2-y} = "y" ] && rm -rv $fx
 map d push :remove<space>([y]/n)<space>
+map D remove
 map x cut
 
 # select-all
@@ -127,6 +128,7 @@ map gd cd ~/Downloads
 map gc cd ~/.config
 map gl cd /run/media/learning
 map gh cd /run/media/learning/CLASS/HK5
+map gm cd /run/media
 
 # fzf
 cmd fzf_jump ${{
@@ -145,14 +147,14 @@ map f fzf_jump
 
 # tmux
 cmd create-tmux-session %{{
-    name=$(basename $(dirname $f))
+    name=${1-$(basename $(dirname $f))}
     tmux new -s $name -d
     echo "created tmux session '$name'"
 }}
 map s push :create-tmux-session<space>
 
 cmd create-tmux-window %{{
-    name=$(basename $(dirname $f))
+    name=${1-$(basename $(dirname $f))}
     tmux new-window -n $name -d
     echo "created tmux window '$name'"
 }}
