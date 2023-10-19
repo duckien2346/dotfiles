@@ -191,6 +191,10 @@ bindsym $mod+r mode "resize"
 #     status_command i3status --config ~/.config/i3/i3status.conf
 # }
 
+
+# default|stacking|tabbed
+workspace_layout tabbed
+
 # gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle <px>
 for_window [class="^.*"] border pixel 2 
 gaps inner 0
@@ -203,13 +207,13 @@ default_floating_border pixel 5
 
 mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown" {
 
-  bindsym l exec i3lock
+  bindsym l exec i3lock, mode "default"
 
   bindsym o exec i3-msg exit
 
-  bindsym r exec systemctl reboot
+  bindsym r exec reboot
 
-  bindsym s exec systemctl shutdown
+  bindsym s exec shutdown now
 
   bindsym Escape mode "default"
 
@@ -275,6 +279,6 @@ exec --no-startup-id chromium
 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/gura-disguish.png
 # exec_always --no-startup-id xrandr --dpi 220 
-exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60 --pos 0x0 --primary
+# exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60 --pos 0x0 --primary
 exec_always --no-startup-id redshift -P -O 3000
 
