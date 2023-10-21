@@ -51,7 +51,7 @@ return {
         dotfiles = false,
         git_clean = false,
         no_buffer = false,
-        custom = { ".DS_Store", "bin", ".vscode", ".idea" },
+        custom = { ".DS_Store", ".vscode", ".idea" },
       },
       git = {
         ignore = true,

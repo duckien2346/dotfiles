@@ -8,6 +8,7 @@ return {
         "saadparwaiz1/cmp_luasnip", -- for autocompletion
         "rafamadriz/friendly-snippets", -- useful snippets
         "onsails/lspkind.nvim",     -- vs-code like pictograms
+        -- "zbirenbaum/copilot-cmp",
     },
     config = function()
         local cmp = require("cmp")
@@ -18,6 +19,15 @@ return {
 
         -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
         require("luasnip.loaders.from_vscode").lazy_load()
+
+        -- -- Tab Completion Configuration (Highly Recommended)
+        -- local has_words_before = function()
+        --     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+        --         return false
+        --     end
+        --     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        --     return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+        -- end
 
         cmp.setup({
             completion = {
@@ -36,13 +46,21 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                 -- ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                 ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
+                --     if cmp.visible() and has_words_before() then
+                --         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                --     else
+                --         fallback()
+                --     end
+                -- end),
                 ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
             }),
             -- sources for autocompletion
             sources = cmp.config.sources({
-                { name = "nvim_lsp" },
                 { name = "buffer" }, -- text within current buffer
                 { name = "path" }, -- file system paths
+                { name = "nvim_lsp" },
+                -- { name = "copilot" },
                 { name = "luasnip" }, -- snippets
             }),
             -- configure lspkind for vs-code like pictograms in completion menu
@@ -50,8 +68,30 @@ return {
                 format = lspkind.cmp_format({
                     maxwidth = 50,
                     ellipsis_char = "...",
+                    mode = "symbol",
+                    symbol_map = { Copilot = "" },
                 }),
             },
+            sorting = {
+                priority_weight = 2,
+                comparators = {
+                    -- require("copilot_cmp.comparators").prioritize,
+
+                    -- Below is the default comparitor list and order for nvim-cmp
+                    cmp.config.compare.offset,
+                    -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+                    cmp.config.compare.exact,
+                    cmp.config.compare.score,
+                    cmp.config.compare.recently_used,
+                    cmp.config.compare.locality,
+                    cmp.config.compare.kind,
+                    cmp.config.compare.sort_text,
+                    cmp.config.compare.length,
+                    cmp.config.compare.order,
+                },
+            },
         })
+
+        vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
     end,
 }
