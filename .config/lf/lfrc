@@ -136,11 +136,12 @@ map gm cd /run/media
 cmd fzf_jump ${{
     res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
     if [ -n "$res" ]; then
-        if [ -d "$res" ]; then
-            cmd="cd"
-        else
-            cmd="select"
-        fi
+        # if [ -d "$res" ]; then
+        #     cmd="cd"
+        # else
+        #     cmd="select"
+        # fi
+        cmd="select"
         res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
         lf -remote "send $id $cmd \"$res\""
     fi
@@ -150,19 +151,19 @@ map f fzf_jump
 # tmux
 cmd create-tmux-session %{{
     name=${1-$(basename $(dirname $f))}
-    lowercase=$(echo $name | tr '[:upper:]' '[:lower:]')
+    lowercase=$(echo $name | tr . _ | tr '[:upper:]' '[:lower:]')
     tmux new -s $lowercase -d
     echo "created tmux session '$lowercase'"
 }}
-map s push :create-tmux-session<space>
+map S push :create-tmux-session<space>
 
 cmd create-tmux-window %{{
     name=${1-$(basename $(dirname $f))}
-    lowercase=$(echo $name | tr '[:upper:]' '[:lower:]')
+    lowercase=$(echo $name | tr . _ | tr '[:upper:]' '[:lower:]')
     tmux new-window -n $name -d
     echo "created tmux window '$name'"
 }}
-map w push :create-tmux-window<space>
+map W push :create-tmux-window<space>
 
 # copy path to clipboard
 cmd copy-path &{{

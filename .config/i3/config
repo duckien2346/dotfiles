@@ -223,6 +223,7 @@ mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown" {
 }
 
 bindsym $mod+x mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown"
+bindsym Print exec prime-run flameshot gui
 
 # brightnessctl
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
