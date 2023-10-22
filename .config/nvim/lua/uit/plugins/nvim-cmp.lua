@@ -69,7 +69,7 @@ return {
                     maxwidth = 50,
                     ellipsis_char = "...",
                     mode = "symbol",
-                    -- symbol_map = { Copilot = "" },
+                    symbol_map = { Copilot = "" },
                 }),
             },
             sorting = {

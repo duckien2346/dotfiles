@@ -4,7 +4,6 @@ local opts = { noremap = true, silent = true }
 
 -- general keymap
 vim.keymap.set("i", "jk", "<ESC>", opts)
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, opts)
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>", opts) -- clear search highlights
 vim.keymap.set("n", "<leader>q", ":q!<CR>", opts) -- clear search highlights
 
@@ -16,8 +15,7 @@ vim.keymap.set({ "n", "i" }, "<C-s>", "<ESC><cmd>SessionSave<CR>:wa<CR>", opts)
 -- vim.keymap.set("i", "<C-z>", "<ESC>ua", opts)
 -- vim.keymap.set("i", "<C-Z>", "<ESC><C-r>a", opts)
 -- vim.keymap.set("i", "<C-o>", "<C-O>o", opts)
--- vim.keymap.set("i", "<C-O>", "<C-O>O", opts)-- vim.keymap.set("i", "<C-O>", "<C-O>O", opts)
-vim.keymap.set("n", "<leader>rp", [[:%s/<C-r><C-w>/<C-r>0/gI<Left><Left><Left>]])
+-- vim.keymap.set("i", "<C-O>", "<C-O>O", opts)
 
 vim.keymap.set("v", "<leader>y", '"+y', opts)
 vim.keymap.set("v", "<leader>p", '"+p', opts)
