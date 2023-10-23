@@ -116,12 +116,7 @@ cmd tar ${{
 
 # compress current file or selected files with zip
 cmd zip %{{
-    set -f
-    if [ ! -z $f ] &&
-    mkdir $1
-    cp -r $fx $1
-    zip -rv $1.zip $1
-    rm -rf $1
+    zip -rv $f.zip $f
 }}
 map zz push :zip<space>
 
@@ -155,7 +150,7 @@ cmd create-tmux-session %{{
     tmux new -s $lowercase -d
     echo "created tmux session '$lowercase'"
 }}
-map S push :create-tmux-session<space>
+map s push :create-tmux-session<space>
 
 cmd create-tmux-window %{{
     name=${1-$(basename $(dirname $f))}
@@ -163,7 +158,7 @@ cmd create-tmux-window %{{
     tmux new-window -n $name -d
     echo "created tmux window '$name'"
 }}
-map W push :create-tmux-window<space>
+map w push :create-tmux-window<space>
 
 # copy path to clipboard
 cmd copy-path &{{
