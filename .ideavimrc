@@ -1,0 +1,72 @@
+" search for actions: :actionlist <patter>
+
+
+" set number                        " line numbers
+set relativenumber                " relative line numberus
+
+set hlsearch                      " highlight search occurrences
+set ignorecase                    " ignore case in search patterns
+set smartcase                     " no ignore case when pattern is uppercase
+set incsearch                     " show search results while typing
+set wrapscan                      " searches wrap around the end of the file
+
+set gdefault                      " substitute all occurrences in line per default
+set history=10000                 " keep x lines of command line history
+set scrolloff=8 sidescrolloff=60  " keep some lines before and after the cursor visible
+set clipboard=unnamedplus,unnamed,ideaput " integrate with system clipboard
+set colorcolumn=60                " show vertical line at 60th column
+
+
+" https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
+set commentary
+set surround                      " emulate vim-surround plugin
+set ideajoin
+set ideastatusicon=disabled
+set easymotion
+set multiple-cursors
+
+
+" set <leader> to <space>
+let mapleader = " "
+
+inoremap jk <ESC>
+
+" actions
+nmap <C-w> <action>(CloseEditor)
+nmap <leader>nh :nohl<CR>
+
+" tab navigation
+nmap <M-h> <action>(PreviousTab)
+nmap <M-l> <action>(NextTab)
+
+" Lines navigation
+map <M-j> <action>(MoveLineDown)
+map <M-k> <action>(MoveLineUp)
+vmap > >gv
+vmap < <gv
+
+" window navigation
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+" screen management
+nmap <leader>sv <action>(SplitVertically)
+nmap <leader>sh <action>(SplitHorizontally)
+nmap <leader>sx <action>(Unsplit)
+
+
+" Go to
+nmap ]d <action>(GotoNextError)
+nmap [d <action>(GotoPreviousError)
+nmap gd <action>(GotoDeclaration)
+nmap gi <action>(GotoImplementation)
+nmap gD <action>(GotoDefinition)
+
+" Mischellaneous
+nmap <leader>i <action>(Generate)
+nmap <leader>d <action>(ShowErrorDescription)
+
+set NERDTree
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
