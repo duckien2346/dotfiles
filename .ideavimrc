@@ -15,7 +15,7 @@ set history=10000                 " keep x lines of command line history
 set scrolloff=8 sidescrolloff=60  " keep some lines before and after the cursor visible
 set clipboard=unnamedplus,unnamed,ideaput " integrate with system clipboard
 set colorcolumn=60                " show vertical line at 60th column
-
+set foldmethod=indent             " fold based on indent
 
 " https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
 set commentary
@@ -55,7 +55,6 @@ nmap <leader>sv <action>(SplitVertically)
 nmap <leader>sh <action>(SplitHorizontally)
 nmap <leader>sx <action>(Unsplit)
 
-
 " Go to
 nmap ]d <action>(GotoNextError)
 nmap [d <action>(GotoPreviousError)
@@ -63,9 +62,13 @@ nmap gd <action>(GotoDeclaration)
 nmap gi <action>(GotoImplementation)
 nmap gD <action>(GotoDefinition)
 
+" Breakpoints
+nmap <leader>b <action>(ToggleLineBreakpoint)
+
 " Mischellaneous
 nmap <leader>i <action>(Generate)
 nmap <leader>d <action>(ShowErrorDescription)
+nmap <leader>rn <action>(RenameElement)
 
 set NERDTree
 let g:NERDTreeMapActivateNode='l'
