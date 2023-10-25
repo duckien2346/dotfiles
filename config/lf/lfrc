@@ -168,4 +168,6 @@ cmd copy-path &{{
 }}
 map <a-c> copy-path
 
-
+# drap and drop
+cmd drag-drop %dragon-drop -a $fx
+map <a-d> drag-drop
