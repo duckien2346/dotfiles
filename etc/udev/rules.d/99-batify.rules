@@ -16,7 +16,7 @@ SUBSYSTEM=="power_supply", ACTION=="change", \
 ENV{POWER_SUPPLY_ONLINE}=="0", ENV{POWER}="off", \
 OPTIONS+="last_rule", \
 IMPORT{program}="/usr/bin/xpub", \
-RUN+="/bin/su $env{XUSER} -c 'notify-send -u critical -i battery-missing \"Battery status\" \"Battery is Discharging.\"'"
+RUN+="/bin/su $env{XUSER} -c 'notify-send -u normal -i battery-missing \"Battery status\" \"Battery is Discharging.\"'"
 
 SUBSYSTEM=="power_supply", ACTION=="change", \
 ENV{POWER_SUPPLY_ONLINE}=="1", ENV{POWER}="on", \
