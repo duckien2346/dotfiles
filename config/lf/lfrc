@@ -41,15 +41,6 @@ map d push :remove<space>([y]/n)<space>
 map D remove
 map x cut
 
-# select-all
-cmd select-all :unselect; invert
-cmd toggle-select-all %{{
-    [[ ! -z $fs ]] && cmd='unselect' || cmd='invert'
-    lf -remote "send $id $cmd"
-}}
-map <c-a> toggle-select-all 
-
-
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
@@ -171,3 +162,12 @@ map <a-c> copy-path
 # drap and drop
 cmd drag-drop %dragon-drop -a $fx
 map <a-d> drag-drop
+
+# select-all
+cmd select-all :unselect; invert
+cmd toggle-select-all &{{
+    [[ ! -z $fs ]] && cmd='unselect' || cmd='invert'
+    lf -remote "send $id $cmd"
+}}
+map <a-a> toggle-select-all 
+

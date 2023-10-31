@@ -21,7 +21,7 @@ set foldmethod=indent             " fold based on indent
 set commentary
 set surround                      " emulate vim-surround plugin
 set ideajoin
-set ideastatusicon=disabled
+"set ideastatusicon=disabled
 set easymotion
 set multiple-cursors
 
@@ -36,8 +36,8 @@ nmap <C-w> <action>(CloseEditor)
 nmap <leader>nh :nohl<CR>
 
 " tab navigation
-nmap <M-h> <action>(PreviousTab)
-nmap <M-l> <action>(NextTab)
+map <M-h> <action>(PreviousTab)
+map <M-l> <action>(NextTab)
 
 " Lines navigation
 map <M-j> <action>(MoveLineDown)
@@ -58,18 +58,29 @@ nmap <leader>sx <action>(Unsplit)
 " Go to
 nmap ]d <action>(GotoNextError)
 nmap [d <action>(GotoPreviousError)
-nmap gd <action>(GotoDeclaration)
-nmap gi <action>(GotoImplementation)
+
 nmap gD <action>(GotoDefinition)
+nmap gd <action>(GotoDeclaration)
+nmap gt <Action>(GotoTypeDeclaration)
+nmap gi <action>(GotoImplementation)
+nmap gr <action>(ShowUsages)
+nmap gb <Action>(Back)
+nmap gf <Action>(Forward)
 
 " Breakpoints
 nmap <leader>b <action>(ToggleLineBreakpoint)
 
 " Mischellaneous
-nmap <leader>i <action>(Generate)
-nmap <leader>d <action>(ShowErrorDescription)
+nmap <leader>ca <action>(ShowIntentionActions)
+nmap <leader>dd <action>(ShowErrorDescription)
 nmap <leader>rn <action>(RenameElement)
+nmap <leader>ff <action>(GotoFile)
+nmap <leader>fm <action>(ReformatCode)
+nmap <leader>i <action>(Generate)
 
 set NERDTree
+"set noNERDTree
 let g:NERDTreeMapActivateNode='l'
 let g:NERDTreeMapJumpParent='h'
+"nmap <leader>ee :NERDTreeToggle<CR>
+"nmap <leader>ef :NERDTreeFind<CR>

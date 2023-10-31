@@ -193,7 +193,8 @@ bindsym $mod+r mode "resize"
 
 
 # default|stacking|tabbed
-workspace_layout default
+#workspace_layout default
+workspace_layout stacking
 
 # gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle <px>
 for_window [class="^.*"] border pixel 2 
