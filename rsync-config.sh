@@ -1,6 +1,7 @@
 #!/bin/sh
 
-rsync -auP --ignore-non-existing /home/uit/.config/ config
+rsync -auP --ignore-non-existing --exclude nvim /home/uit/.config/ config
+#rsync -auP --ignore-non-existing /home/uit/.config/ config
 
 rsync -auP /home/uit/.config/mpv/ config/mpv
 rsync -auP /home/uit/.config/dunst/ config/dunst
