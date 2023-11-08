@@ -206,7 +206,8 @@ gaps outer 0
 default_border none
 default_floating_border pixel 5
 
-mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown" {
+set $exit "exit: screen[l]ock log[o]ut, [r]eboot, [p]oweroff, [s]uspend, [h]ibernate"
+mode $exit {
 
   bindsym l exec i3lock -i ~/Pictures/gura-disguish.png, mode "default"
 
@@ -214,7 +215,11 @@ mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown" {
 
   bindsym r exec systemctl reboot
 
-  bindsym s exec systemctl poweroff
+  bindsym p exec systemctl poweroff
+
+  bindsym s exec systemctl suspend, mode "default"
+
+  bindsym h exec systemctl hibernate, mode "default"
 
   bindsym Escape mode "default"
 
@@ -223,12 +228,52 @@ mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown" {
   bindsym $mod+x mode "default"
 }
 
-bindsym $mod+x mode "exit: screen[l]ock log[o]ut, [r]eboot, [s]hutdown"
+bindsym $mod+x mode $exit
 bindsym Print exec prime-run flameshot gui
 
 # brightnessctl
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+# Mic, Audio, Bright Control
+
+set $volume "vol: [m]ute, [u]p, [d]own"
+mode $volume {
+    bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+    bindsym u exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+    bindsym d exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+set $mic "mic: [m]ute, [u]p, [d]own"
+mode $mic {
+    bindsym m exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+    bindsym u exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ +5% && $refresh_i3status
+    bindsym d exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ -5% && $refresh_i3status
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+set $light "light: [u]p, [d]own"
+mode $light {
+    bindsym u exec --no-startup-id brightnessctl set +5%
+    bindsym d exec --no-startup-id brightnessctl set 5%-
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+set $control "control: [m]ic, [v]olume, [l]ight"
+
+mode $control {
+    bindsym v mode $volume
+    bindsym m mode $mic
+    bindsym l mode $light
+    
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym $mod+c mode "default"
+}
+
+bindsym $mod+c mode $control
 
 
 # Plasma compatibility improvements
@@ -264,7 +309,7 @@ for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 
 # assign
 # assign [class="Alacritty"] $ws1
-assign [class="dolphin|lf"] $ws2
+assign [class="dolphin|lf|jetbrains-idea|Postman"] $ws2
 assign [class="Google-chrome|Chromium"] $ws3
 assign [class="Spotify"] $ws9
 assign [class="xdman|discord"] $ws10
@@ -283,6 +328,6 @@ exec --no-startup-id chromium
 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/gura-disguish.png
 # exec_always --no-startup-id xrandr --dpi 220 
-# exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60 --pos 0x0 --primary
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60 --pos 0x0 --primary
 exec_always --no-startup-id redshift -P -O 3000
 
