@@ -1,33 +1,25 @@
-# interpreter for shell commands
-set shell sh
 
-# set '-eu' options for shell commands
-# These options are used to have safer shell commands. Option '-e' is used to
-# exit on error and option '-u' is used to give error for unset variables.
-# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
-# $fx variables contain names with '*' or '?' characters. However, this option
-# is used selectively within individual commands as it can be limiting at
-# times.
-set shellopts '-eu'
-
-# set internal field separator (IFS) to "\n" for shell commands
-# This is useful to automatically split file names in $fs and $fx properly
-# since default file separator used in these variables (i.e. 'filesep' option)
-# is newline. You need to consider the values of these options and create your
-# commands accordingly.
-set ifs "\n"
 
 # Basic Settings
 set hidden true
 set ignorecase true
 set icons true
-
-# leave some space at the top and the bottom of the screen
 set scrolloff 10
+set number true
+set relativenumber true
 
-# Use the `dim` attribute instead of underline for the cursor in the preview pane
 set cursorpreviewfmt "\033[7;2m"
+set dupfilefmt '%f.~%n' # defalt is '%f.~%n~'
 
+set shell sh
+set shellopts '-eu'
+set ifs "\n"
+set info 'size'
+set dircounts true
+
+
+#############################################################mapping
+#
 # use enter for shell commands
 map <enter> shell
 
@@ -60,6 +52,12 @@ map a :push %mkdir<space>-p<space>
 # define a custom 'rename' command without prompt for overwrite
 cmd rename %[ -e $1 ] && printf "file exists" || mv -v $f $1
 map r push :rename<space>
+cmd rename_ui &{{
+    # file=$(echo $f | tr " " "<space>")
+    file=${f// /<space>}
+    lf -remote "send $id push :rename<space>$file"
+}}
+map r rename_ui
 
 # make sure trash folder exists
 # %mkdir -p ~/.trash
@@ -90,9 +88,10 @@ cmd extract ${{
         *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $fi;;
         *.tar.gz|*.tgz) tar xzvf $fi;;
         *.tar.xz|*.txz) tar xJvf $fi;;
-        *.zip) unzip $fi;;
+        # *.zip) unzip $fi -d $(basename $fi .zip);;
+        *.zip) 7z x -o$(basename $fi .zip) $fi;;
         *.rar) unrar x -o- $fi;;
-        *.7z) 7z x $fi;;
+        *.7z) 7z x -o$(basename $fi .7z) $fi;;
     esac
     done
 }}
@@ -173,3 +172,13 @@ cmd toggle-select-all &{{
 }}
 map <a-a> toggle-select-all 
 
+# info
+cmd info &{{
+    lf -remote "send $id %echo \"info: '$f'\""
+}}
+
+cmd get-size ${{
+    df -h | grep "Use\|home\|media"
+    read
+}}
+map S get-size
