@@ -1,7 +1,7 @@
 " search for actions: :actionlist <patter>
 
 
-" set number                        " line numbers
+set number                        " line numbers
 set relativenumber                " relative line numberus
 
 set hlsearch                      " highlight search occurrences
@@ -18,13 +18,13 @@ set colorcolumn=60                " show vertical line at 60th column
 set foldmethod=indent             " fold based on indent
 
 " https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
+set NERDTree
 set commentary
 set surround                      " emulate vim-surround plugin
 set ideajoin
 "set ideastatusicon=disabled
-set easymotion
+"set easymotion
 set multiple-cursors
-
 
 " set <leader> to <space>
 let mapleader = " "
@@ -42,8 +42,10 @@ nmap <C-w> <action>(CloseEditor)
 nmap <leader>nh :nohl<CR>
 
 " tab navigation
-map <M-h> <action>(PreviousTab)
-map <M-l> <action>(NextTab)
+nmap <M-h> <action>(PreviousTab)
+nmap <M-l> <action>(NextTab)
+"sethandler <M-h> n:vim i:ide
+sethandler <M-l> n:vim i:ide
 
 " Lines navigation
 map <M-j> <action>(MoveLineDown)
@@ -70,13 +72,11 @@ nmap gd <action>(GotoDeclaration)
 nmap gt <Action>(GotoTypeDeclaration)
 nmap gi <action>(GotoImplementation)
 nmap gr <action>(ShowUsages)
-nmap gb <Action>(Back)
-nmap gf <Action>(Forward)
 
 " Breakpoints
 nmap <leader>b <action>(ToggleLineBreakpoint)
 
-" Mischellaneous
+" Actions
 nmap <leader>ca <action>(ShowIntentionActions)
 nmap <leader>di <action>(ShowErrorDescription)
 nmap <leader>rn <action>(RenameElement)
@@ -84,9 +84,10 @@ nmap <leader>ff <action>(GotoFile)
 nmap <leader>fm <action>(ReformatCode)
 nmap <leader>i <action>(Generate)
 
-set NERDTree
-"set noNERDTree
+" NERDTree
 let g:NERDTreeMapActivateNode='l'
-let g:NERDTreeMapJumpParent='h'
-"nmap <leader>ee :NERDTreeToggle<CR>
-"nmap <leader>ef :NERDTreeFind<CR>
+let g:NERDTreeMapJumpParent="h"
+let g:NERDTreeMapOpenSplit="x"
+let g:NERDTreeMapOpenVSplit="v"
+"nmap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeFind<CR>
