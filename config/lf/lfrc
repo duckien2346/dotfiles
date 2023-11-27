@@ -88,6 +88,7 @@ cmd extract ${{
         *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $fi;;
         *.tar.gz|*.tgz) tar xzvf $fi;;
         *.tar.xz|*.txz) tar xJvf $fi;;
+        *.tar.zst|*.zst) tar xaf $fi;;
         # *.zip) unzip $fi -d $(basename $fi .zip);;
         *.zip) 7z x -o$(basename $fi .zip) $fi;;
         *.rar) unrar x -o- $fi;;

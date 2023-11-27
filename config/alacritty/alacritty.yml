@@ -20,19 +20,19 @@ scrolling:
 font:
   normal:
     # family: MesloLGS NF
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono NF
     style: Regular
   bold:
     # family: MesloLGS NF
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono NF
     style: Bold
   italic:
     # family: MesloLGS NF
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono NF
     style: Italic
   bold_italic:
     # family: MesloLGS NF
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono NF
     style: Bold Italic
   size: 14
 

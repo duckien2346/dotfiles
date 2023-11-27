@@ -307,10 +307,11 @@ for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 # bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
 
 
-# assign
+# assign using xprop
 # assign [class="Alacritty"] $ws1
 assign [class="dolphin|lf|jetbrains-idea|Postman"] $ws2
 assign [class="Google-chrome|Chromium"] $ws3
+assign [class="Anki"] $ws4
 assign [class="Spotify"] $ws9
 assign [class="xdman|discord"] $ws10
 
