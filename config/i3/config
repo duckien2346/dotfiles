@@ -56,7 +56,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -fn "JetBrainsMono Nerd Font-10"
+bindsym $mod+d exec --no-startup-id dmenu_run -fn "JetBrainsMono NF-13"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -309,26 +309,27 @@ for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 
 # assign using xprop
 # assign [class="Alacritty"] $ws1
-assign [class="dolphin|lf|jetbrains-idea|Postman"] $ws2
+assign [class="jetbrains-rider|jetbrains-idea"] $ws1
+assign [class="Postman|DBeaver Ultimate|Anki"] $ws2
 assign [class="Google-chrome|Chromium"] $ws3
-assign [class="Anki"] $ws4
+
 assign [class="Spotify"] $ws9
 assign [class="xdman|discord"] $ws10
 
 # open on startup
-exec --no-startup-id nm-applet
 exec --no-startup-id picom -b
-exec --no-startup-id sh ~/.config/polybar/launch.sh
 exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id ibus engine Bamboo
 
 exec --no-startup-id alacritty
 exec --no-startup-id discord
 exec --no-startup-id chromium
+exec --no-startup-id anki
 # exec --no-startup-id google-chrome-stable
 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/gura-disguish.png
 # exec_always --no-startup-id xrandr --dpi 220 
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60 --pos 0x0 --primary
 exec_always --no-startup-id redshift -P -O 3000
+exec_always --no-startup-id sh ~/.config/polybar/launch.sh
 
