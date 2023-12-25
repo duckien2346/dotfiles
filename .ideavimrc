@@ -40,6 +40,7 @@ vnoremap p "_dP
 " mapping
 nmap <C-w> <action>(CloseEditor)
 nmap <leader>q <action>(CloseEditor)
+nmap Q <action>(CloseAllEditorsButActive)
 nmap <leader>nh :nohl<CR>
 
 " tab navigation
@@ -82,7 +83,6 @@ nmap <leader>j <action>(StepInto)
 nmap <leader>k <action>(StepOut)
 nmap <leader>l <action>(StepOver)
 nmap <leader>dc <action>(Stop)
-nmap <leader>dn <action>(Resume)
 nmap <leader>dn <action>(Debug)
 
 " Actions
@@ -97,7 +97,7 @@ nmap <leader>i <action>(Generate)
 let g:NERDTreeMapActivateNode='l'
 let g:NERDTreeMapPreview='<Tab>'
 let g:NERDTreeMapJumpParent="h"
-let g:NERDTreeMapOpenSplit="x"
-let g:NERDTreeMapOpenVSplit="v"
+let g:NERDTreeMapOpenSplit="X"
+let g:NERDTreeMapOpenVSplit="V"
 "nmap <leader>e :NERDTreeToggle<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
