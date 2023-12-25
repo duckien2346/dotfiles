@@ -28,9 +28,11 @@ map ` !true
 
 # execute current file (must be executable)
 # change to remove
+cmd trash %[ ${2-y} = "y" ] && gio trash $fx
+map d push :trash<space>([y]/n)<space>
+
 cmd remove %[ ${2-y} = "y" ] && rm -rv $fx
-map d push :remove<space>([y]/n)<space>
-map D remove
+map D push :remove<space>([y]/n)<space>
 map x cut
 
 # define a custom 'open' command
@@ -40,6 +42,7 @@ map x cut
 cmd open &{{
     case $(file --mime-type -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        # application/*) lf -remote "send $id \$\$fx";;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
@@ -64,7 +67,7 @@ map r rename_ui
 
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)
-cmd trash %set -f; mv $fx ~/.trash
+# cmd trash %set -f; mv $fx ~/.trash
 
 # define a custom 'delete' command
 # cmd delete ${{

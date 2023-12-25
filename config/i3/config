@@ -94,7 +94,7 @@ bindsym $mod+z split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+m fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -320,6 +320,7 @@ assign [class="xdman|discord"] $ws10
 exec --no-startup-id picom -b
 exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id ibus engine Bamboo
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec --no-startup-id alacritty
 exec --no-startup-id discord
