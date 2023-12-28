@@ -49,7 +49,7 @@ draw_bold_text_with_bright_colors: true
 
 import:
   - ~/.config/alacritty/themes/dracula.yml
-#   - ~/.config/alacritty/catppuccin-mocha.yml
+  - ~/.config/alacritty/themes/catppuccin-mocha.yml
 
 selection:
   save_to_clipboard: false
