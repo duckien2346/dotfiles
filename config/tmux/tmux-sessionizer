@@ -13,12 +13,14 @@ fi
 
 selected_name=$(basename "$selected" | tr . _ | tr '[:upper:]' '[:lower:]')
 tmux_running=$(pgrep tmux)
-
 parent=$(dirname "$selected")
+
 if [[ $parent == "/home/uit/.config" ]]; then
     parent_name=$(basename "$parent" | tr . _ | tr '[:upper:]' '[:lower:]')
     target="$parent_name:$selected_name"
-    tmux switch-client -t $target || tmux neww -n $selected_name -c $selected
+    tmux switch-client -t $target || \
+        tmux neww -n $selected_name -t "$parent_name:" -c $selected && \
+        tmux switch-client -t $target
     exit 0
 fi
 

@@ -1,5 +1,5 @@
 import = [
-    # "/home/uit/.config/alacritty/themes/dracula.toml",
+    "/home/uit/.config/alacritty/themes/dracula.toml",
     "/home/uit/.config/alacritty/themes/catppuccin-mocha.toml",
 ]
 
