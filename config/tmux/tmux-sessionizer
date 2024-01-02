@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    folders="/home /home/uit/.config /run/media/learning/CLASS/HK5 /run/media/learning /run/media/learning/code "
+    folders="/Users/kien/.config /Users/kien/Workspace "
     selected=$(find $folders -mindepth 1 -maxdepth 1 -type d | fzf)
     if [[ -z $selected ]]; then
         exit 0
@@ -15,12 +15,12 @@ selected_name=$(basename "$selected" | tr . _ | tr '[:upper:]' '[:lower:]')
 tmux_running=$(pgrep tmux)
 parent=$(dirname "$selected")
 
-if [[ $parent == "/home/uit/.config" ]]; then
+if [[ $parent == "/Users/kien/.config" ]]; then
     parent_name=$(basename "$parent" | tr . _ | tr '[:upper:]' '[:lower:]')
     target="$parent_name:$selected_name"
     tmux switch-client -t $target || \
         tmux neww -n $selected_name -t "$parent_name:" -c $selected && \
-        tmux switch-client -t $target
+            tmux switch-client -t $target
     exit 0
 fi
 

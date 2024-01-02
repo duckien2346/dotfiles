@@ -1,24 +1,23 @@
 
-# alias
-# alias ls='ls --color=auto'
-# alias ll='ls -alF'
-# alias la='ls -A'
-# alias sudo='sudo -E -s'
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Variables
 export EDITOR=nvim
-export LEARNING=/run/media/learning
-export SHARING=/run/media/sharing
 
-export PATH="$PATH:/home/uit/.dotnet/tools"
-export PATH="$PATH:/home/uit/.local/share/JetBrains/Toolbox/scripts"
-export PATH="$PATH:/home/uit/.local/share/dbeaver"
-export PATH="$PATH:/home/uit/.local/share/Postman/app"
-export PATH="$PATH:/home/uit/.config/tmux"
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet
 
-. "$HOME/.cargo/env"
-
-if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-  exec startx
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/kien/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/kien/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/kien/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/kien/miniconda3/bin:$PATH"
+    fi
 fi
+unset __conda_setup
+# <<< conda initialize <<<
 
