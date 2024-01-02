@@ -162,11 +162,11 @@ cmd copy-path &{{
     echo -n $f | xclip -selection clipboard
     lf -remote "send $id %echo \"copied path: '$f'\""
 }}
-map <a-c> copy-path
+map ç copy-path
 
 # drap and drop
 cmd drag-drop %dragon-drop -a $fx
-map <a-d> drag-drop
+# map <a-d> drag-drop
 
 # select-all
 cmd select-all :unselect; invert
@@ -174,7 +174,7 @@ cmd toggle-select-all &{{
     [[ ! -z $fs ]] && cmd='unselect' || cmd='invert'
     lf -remote "send $id $cmd"
 }}
-map <a-a> toggle-select-all 
+map å toggle-select-all 
 
 # info
 cmd info &{{
