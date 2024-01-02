@@ -28,7 +28,7 @@ map ` !true
 
 # execute current file (must be executable)
 # change to remove
-cmd trash %[ ${2-y} = "y" ] && gio trash $fx
+cmd trash %[ ${2-y} = "y" ] && trash -v $fx
 map d push :trash<space>([y]/n)<space>
 
 cmd remove %[ ${2-y} = "y" ] && rm -rv $fx

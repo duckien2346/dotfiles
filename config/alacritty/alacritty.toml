@@ -1,6 +1,6 @@
 import = [
-    "/home/uit/.config/alacritty/themes/dracula.toml",
-    "/home/uit/.config/alacritty/themes/catppuccin-mocha.toml",
+    "/Users/kien/.config/alacritty/themes/dracula.toml",
+    "/Users/kien/.config/alacritty/themes/catppuccin-mocha.toml",
 ]
 
 [colors]
@@ -13,7 +13,7 @@ shape = "Underline"
 shape = "Block"
 
 [font]
-size = 14
+size = 18
 
 [font.bold]
 family = "JetBrainsMono NF"
@@ -38,8 +38,8 @@ multiplier = 3
 [selection]
 save_to_clipboard = false
 
-[shell]
-program = "/usr/bin/zsh"
+# [shell]
+# program = "/bin/zsh"
 
 [window]
 opacity = 0.8
