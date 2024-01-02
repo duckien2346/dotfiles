@@ -5,6 +5,7 @@ export EDITOR=nvim
 
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet/tools
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
