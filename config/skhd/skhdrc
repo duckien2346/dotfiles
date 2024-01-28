@@ -9,8 +9,8 @@ cmd - h : yabai -m window --focus west
 cmd - l : yabai -m window --focus east
 
 # change window focus within stack
-#cmd - n : yabai -m window --stack stack.next
-#cmd - p : yabai -m window --stack stack.prev
+# cmd - n : yabai -m window --stack stack.next
+# cmd - p : yabai -m window --stack stack.prev
 
 #change focus between external displays (left and right)
 #cmd - s: yabai -m display --focus west
@@ -21,13 +21,13 @@ cmd - l : yabai -m window --focus east
 cmd - e : yabai -m space --layout bsp
 
 # rotate layout clockwise
-shift + cmd - r : yabai -m space --rotate 270
+# cmd - r : yabai -m space --rotate 270
 
 # flip along y-axis
-shift + cmd - y : yabai -m space --mirror y-axis
+cmd - y : yabai -m space --mirror y-axis
 
 # flip along x-axis
-shift + cmd - x : yabai -m space --mirror x-axis
+cmd - x : yabai -m space --mirror x-axis
 
 # toggle window float
 shift + cmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
@@ -36,7 +36,7 @@ shift + cmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 # -- Modifying Window Size --
 
 # maximize a window
-shift + cmd - m : yabai -m window --toggle zoom-fullscreen
+cmd - m : yabai -m window --toggle zoom-fullscreen
 
 # balance out tree of windows (resize to occupy same area)
 shift + cmd - e : yabai -m space --balance
