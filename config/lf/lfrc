@@ -119,9 +119,10 @@ map zz push :zip<space>
 # Movement
 map gd cd ~/Downloads
 map gc cd ~/.config
-map gl cd /run/media/learning
-map gh cd /run/media/learning/CLASS/HK5
-map gm cd /run/media
+map gw cd ~/Workspace
+# map gl cd /run/media/learning
+# map gh cd /run/media/learning/CLASS/HK5
+# map gm cd /run/media
 
 # fzf
 cmd fzf_jump ${{
