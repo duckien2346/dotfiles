@@ -1,24 +1,10 @@
 format = """
-[](#9A348E)\
 $os\
 $username\
-[](fg:#9A348E bg:#DA627D)\
 $directory\
-[](fg:#DA627D bg:#FCA17D)\
 $git_branch\
 $git_status\
-[](fg:#FCA17D bg:#86BBD8)\
-$dotnet\
-$golang\
-$java\
-$lua\
-$nodejs\
-$rust\
-[](fg:#86BBD8 bg:#06969A)\
-$docker_context\
-[](fg:#06969A bg:#33658A)\
-$time\
-[ ](fg:#33658A)\
+[  ](fg:#674ea7)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -28,17 +14,14 @@ $time\
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#9A348E"
-style_root = "bg:#9A348E"
-format = '[$user ]($style)'
+format = "[$user ]($style)"
 disabled = false
 
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:#9A348E"
 disabled = false # Disabled by default
-format = '[ $symbol ]($style)'
+format = "[$symbol]($style)"
 [os.symbols]
 Arch = "󰣇 "
 Macos = " "
@@ -47,7 +30,6 @@ Unknown = " "
 Windows = " "
 
 [directory]
-style = "bg:#DA627D"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -59,59 +41,26 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
+"Workspaces" = " "
 # Keep in mind that the order matters. For example:
 # "Important Documents" = " 󰈙 "
 # will not be replaced, because "Documents" was already substituted before.
 # So either put "Important Documents" before "Documents" or use the substituted version:
 # "Important 󰈙 " = " 󰈙 "
 
-[docker_context]
-symbol = " "
-style = "bg:#06969A"
-format = '[ $symbol $context ]($style)'
-
 [git_branch]
 symbol = ""
-style = "fg:#000000 bg:#FCA17D"
-format = '[ $symbol $branch ]($style)'
+format = "[ $symbol $branch ]($style)"
 
 [git_status]
-style = "fg:#000000 bg:#FCA17D"
-format = '[$all_status$ahead_behind ]($style)'
-
-[dotnet]
-symbol = "󰪮 "
-style = "fg:#000000 bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[golang]
-symbol = " "
-style = "fg:#000000 bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[java]
-symbol = " "
-style = "fg:#000000 bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[lua]
-symbol = " "
-style = "fg:#000000 bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-
-[nodejs]
-symbol = " "
-style = "fg:#000000 bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[rust]
-symbol = " "
-style = "fg:#000000 bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[time]
-disabled = false
-time_format = "%R" # Hour:Minute Format
-style = "bg:#33658A"
-format = '[ ♥ $time ]($style)'
+format = "[$all_status$ahead_behind]($style)"
+conflicted = "[=$count ]"
+stashed = "[$count ](#3d85c6)"
+deleted = "[✘$count ](#f08080)"
+renamed = "[»$count ](#86BBD8)"
+modified = "[!$count ](#7fb2b2)"
+staged = "[+$count ](#86BBD8)"
+untracked = "[?$count ](#9cd26d)"
+ahead = '⇡$count '
+diverged = '⇕⇡$ahead_count⇣$behind_count '
+behind = '⇣$count '
