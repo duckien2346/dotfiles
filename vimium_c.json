@@ -1,11 +1,11 @@
 {
 	"name": "Vimium C",
-	"@time": "1/2/2024, 9:18:13 PM",
-	"time": 1704205093187,
+	"@time": "2/4/2024, 11:11:46 AM",
+	"time": 1707019906267,
 	"environment": {
 		"extension": "1.99.994",
 		"platform": "mac",
-		"chromium": 120
+		"chromium": 121
 	},
 	"allBrowserUrls": true,
 	"exclusionRules": [],
@@ -85,13 +85,18 @@
 		"map n performFind",
 		"map N performBackwardsFind",
 		"",
+		"map <a-s-p> goBack",
+		"map <a-s-n> goForward",
 		"map <a-s-h> goBack",
 		"map <a-s-l> goForward",
 		"",
 		"# tabs",
 		"map <c-t> createTab",
+		"map <a-p> previousTab",
+		"map <a-n> nextTab",
 		"map <a-h> previousTab",
 		"map <a-l> nextTab",
+		"",
 		"map T visitPreviousTab",
 		"",
 		"map yt duplicateTab",
