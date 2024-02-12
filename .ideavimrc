@@ -39,6 +39,7 @@ vnoremap p "_dP
 
 " mapping
 nmap <C-w> <action>(CloseEditor)
+nmap <C-s> :w<CR>
 nmap <leader>q <action>(CloseEditor)
 nmap Q <action>(CloseAllEditorsButActive)
 nmap <leader>nh :nohl<CR>
@@ -100,4 +101,4 @@ let g:NERDTreeMapJumpParent="h"
 let g:NERDTreeMapOpenSplit="X"
 let g:NERDTreeMapOpenVSplit="V"
 "nmap <leader>e :NERDTreeToggle<CR>
-nnoremap <leader>e :NERDTreeFind<CR>
+nnoremap <C-e> :NERDTreeFind<CR>

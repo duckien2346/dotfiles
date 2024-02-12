@@ -5,7 +5,7 @@ if [[ $# -eq 1 ]]; then
 else
     folders=" "
     folders+="/Users /Users/kien /Users/kien/.config "
-    folders+="/Users/kien/Workspace /Users/kien/Workspace/dotnet "
+    folders+="/Users/kien/Workspaces /Users/kien/Workspaces/dotnet "
 
     selected=$(find $folders -mindepth 1 -maxdepth 1 -type d | fzf)
     if [[ -z $selected ]]; then
