@@ -119,9 +119,9 @@ map zz push :zip<space>
 # Movement
 map gd cd ~/Downloads
 map gc cd ~/.config
-map gw cd ~/Workspace
+map gw cd ~/Workspaces
 # map gl cd /run/media/learning
-# map gh cd /run/media/learning/CLASS/HK5
+map gh cd ~/Workspaces/HK6
 # map gm cd /run/media
 
 # fzf
