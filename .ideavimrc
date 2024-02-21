@@ -26,6 +26,7 @@ set ideajoin
 "set easymotion
 set multiple-cursors
 
+
 " set <leader> to <space>
 let mapleader = " "
 inoremap jk <ESC>
@@ -47,8 +48,6 @@ nmap <leader>nh :nohl<CR>
 " tab navigation
 nmap <M-h> <action>(PreviousTab)
 nmap <M-l> <action>(NextTab)
-"sethandler <M-h> n:vim i:ide
-sethandler <M-l> n:vim i:ide
 " Lines navigation
 map <M-j> <action>(MoveLineDown)
 map <M-k> <action>(MoveLineUp)
@@ -59,6 +58,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+sethandler <C-l> n:vim i:ide
 
 " screen management
 nmap <leader>sv <action>(SplitVertically)
