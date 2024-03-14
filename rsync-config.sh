@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 
 # .config
 rsync -auP --ignore-non-existing ~/.config/ config
