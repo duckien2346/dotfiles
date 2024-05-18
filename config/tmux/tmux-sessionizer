@@ -9,6 +9,7 @@ else
     folders+="/Users/kien/Workspaces "
     folders+="/Users/kien/Workspaces/dotnet "
     folders+="/Users/kien/Workspaces/HK6 "
+    folders+="/Users/kien/Workspaces/flutter "
 
     selected=$(find $folders -mindepth 1 -maxdepth 1 -type d | fzf)
     if [[ -z $selected ]]; then

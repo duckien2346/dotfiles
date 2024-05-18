@@ -27,7 +27,8 @@ cmd - e : yabai -m space --layout bsp
 cmd - y : yabai -m space --mirror y-axis
 
 # flip along x-axis
-cmd - x : yabai -m space --mirror x-axis
+# Default 'cut' shortcut
+#cmd - x : yabai -m space --mirror x-axis
 
 # toggle window float
 shift + cmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2

@@ -54,11 +54,10 @@ map a :push %mkdir<space>-p<space>
 
 # define a custom 'rename' command without prompt for overwrite
 cmd rename %[ -e $1 ] && printf "file exists" || mv -v $f $1
-map r push :rename<space>
 cmd rename_ui &{{
     # file=$(echo $f | tr " " "<space>")
     file=${f// /<space>}
-    lf -remote "send $id push :rename<space>$file"
+    lf -remote "send $id push :rename<space>'$file'<left>"
 }}
 map r rename_ui
 
@@ -111,13 +110,14 @@ cmd tar ${{
 }}
 
 # compress current file or selected files with zip
-cmd zip %{{
+cmd zip ${{
     zip -rv $f.zip $f
 }}
 map zz push :zip<space>
 
 # Movement
 map gd cd ~/Downloads
+map gD cd ~/Documents
 map gc cd ~/.config
 map gw cd ~/Workspaces
 # map gl cd /run/media/learning
@@ -147,7 +147,7 @@ cmd create-tmux-session %{{
     tmux new -s $lowercase -d
     echo "created tmux session '$lowercase'"
 }}
-map s push :create-tmux-session<space>
+# map s push :create-tmux-session<space>
 
 cmd create-tmux-window %{{
     name=${1-$(basename $(dirname $f))}
@@ -155,7 +155,7 @@ cmd create-tmux-window %{{
     tmux new-window -n $name -d
     echo "created tmux window '$name'"
 }}
-map w push :create-tmux-window<space>
+# map w push :create-tmux-window<space>
 
 # copy path to clipboard
 cmd copy-path &{{
@@ -187,3 +187,5 @@ cmd get-size ${{
     read
 }}
 map S get-size
+
+map P :push $mpv<space>*.mp4
