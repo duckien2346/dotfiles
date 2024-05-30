@@ -1,4 +1,4 @@
-" search for actions: :actionlist <patter>
+" search for actions: :actionlist <pattern>
 
 
 set number                        " line numbers
@@ -9,6 +9,7 @@ set ignorecase                    " ignore case in search patterns
 set smartcase                     " no ignore case when pattern is uppercase
 set incsearch                     " show search results while typing
 set wrapscan                      " searches wrap around the end of the file
+set nocursorline
 
 set gdefault                      " substitute all occurrences in line per default
 set history=10000                 " keep x lines of command line history
@@ -25,7 +26,7 @@ set ideajoin
 "set ideastatusicon=disabled
 "set easymotion
 set multiple-cursors
-
+set highlightedyank
 
 " set <leader> to <space>
 let mapleader = " "
@@ -41,9 +42,14 @@ vnoremap p "_dP
 " mapping
 nmap <C-w> <action>(CloseEditor)
 nmap <C-s> :w<CR>
+
+nmap <leader>nh :nohl<CR>
+
 nmap <leader>q <action>(CloseEditor)
 nmap Q <action>(CloseAllEditorsButActive)
-nmap <leader>nh :nohl<CR>
+
+nmap <C-d> <C-d>zz
+nmap <C-u> <C-u>zz
 
 " tab navigation
 nmap <M-h> <action>(PreviousTab)
@@ -55,6 +61,7 @@ vmap > >gv
 vmap < <gv
 " window navigation
 nnoremap <C-j> <C-w>j
+inoremap <C-j> <CR>
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -91,14 +98,37 @@ nmap <leader>ca <action>(ShowIntentionActions)
 nmap <leader>di <action>(ShowErrorDescription)
 nmap <leader>rn <action>(RenameElement)
 nmap <leader>ff <action>(GotoFile)
+nmap <leader>fc <action>(GotoClass)
+nmap <leader>fs <action>(FindInPath)
+nmap <leader>fa <action>(GotoAction)
 nmap <leader>fm <action>(ReformatCode)
 nmap <leader>i <action>(Generate)
 
+nmap ]h <action>(VcsShowNextChangeMarker)
+nmap [h <action>(VcsShowPrevChangeMarker)
+nmap <leader>hx <action>(Vcs.RollbackChangedLines)
+nmap <leader>hd <action>(VcsShowCurrentChangeMarker)
+nmap <leader>hh <action>(Vcs.ShowDiffChangedLines)
+
 " NERDTree
-let g:NERDTreeMapActivateNode='l'
-let g:NERDTreeMapPreview='<Tab>'
+let g:NERDTreeFileLines = 1
+let g:NERDTreeMapActivateNode="l"
+let g:NERDTreeMapPreview="<Tab>"
 let g:NERDTreeMapJumpParent="h"
 let g:NERDTreeMapOpenSplit="X"
 let g:NERDTreeMapOpenVSplit="V"
 "nmap <leader>e :NERDTreeToggle<CR>
-nnoremap <C-e> :NERDTreeFind<CR>
+" nnoremap <C-e> :NERDTreeFind<CR>
+
+" vim-multiple-cursors
+set selection=inclusive
+let g:multi_cursor_start_word_key      = "<C-n>"
+let g:multi_cursor_next_key            = "<C-n>"
+let g:multi_cursor_prev_key            = "<C-p>"
+let g:multi_cursor_skip_key            = "<C-x>"
+let g:multi_cursor_quit_key            = "<Esc>"
+
+" vim-highlightedyank
+let g:highlightedyank_highlight_duration = 1
+let g:highlightedyank_highlight_color = "rgba(160, 0, 0, 160)"
+
