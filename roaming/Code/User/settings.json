@@ -1,0 +1,151 @@
+{
+  ///////////////////// background
+  "background.enabled": true,
+  "background.useFront": false,
+
+  "background.customImages": [
+    "https://pbs.twimg.com/media/Eh5GsfZUMAEE3rH?format=jpg&name=4096x4096",
+    "https://images3.alphacoders.com/125/1251223.jpg",
+    "https://images6.alphacoders.com/124/1249257.jpg",
+    "https://images2.alphacoders.com/125/1253207.jpg",
+    "https://images6.alphacoders.com/111/1113228.png",
+  ],
+  "background.style": {
+    "content": "''",
+    "pointer-events": "none",
+    "position": "absolute",
+    "z-index": "99999",
+    "width": "100%",
+    "height": "100%",
+    "background-position": "center",
+    "background-size": "cover", //contain, cover,center, stretch
+    "background-repeat": "no-repeat",
+    "opacity": 0.3
+  },
+
+  "explorer.confirmDelete": false,
+  "files.autoSave": "onFocusChange",
+  "editor.fontSize": 19,
+  "workbench.iconTheme": "material-icon-theme",
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "settingsSync.ignoredExtensions": [
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.jupyter"
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "prettier.singleQuote": true,
+  "explorer.confirmDragAndDrop": false,
+  "git.confirmSync": false,
+  "notebook.lineNumbers": "on",
+  "notebook.cellToolbarLocation": {
+    "default": "left",
+    "jupyter-notebook": "left"
+  },
+  "jupyter.askForKernelRestart": false,
+  "output.smartScroll.enabled": false,
+  "[aspnetcorerazor]": {},
+  "terminal.integrated.fontSize": 15,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "git.autofetch": true,
+  "workbench.editorAssociations": {
+    "*.mat": "default",
+    "*.xlsx": "gc-excelviewer-excel-editor",
+    "*.csv": "gc-excelviewer-csv-editor",
+    "*.docx": "docxreader.docxEditor",
+    "*.doc": "default",
+    "*.pdf": "pdf.preview"
+  },
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/node_modules": true,
+  },
+
+  "angular.enable-strict-mode-prompt": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.renderWhitespace": "all",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.fontVariations": false,
+  "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, JetBrainsMono NF",
+  "terminal.integrated.fontFamily": "JetBrainsMono NF",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "dotnet.inlayHints.enableInlayHintsForParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForIndexerParameters": true,
+  "workbench.colorTheme": "Rosé Pine",
+  "workbench.editor.empty.hint": "hidden",
+  "editor.minimap.enabled": false,
+  "csharpextensions.useThisForCtorAssignments": false,
+  "csharpextensions.privateMemberPrefix": "_",
+  "csharpextensions.useFileScopedNamespace": true,
+  "csharpextensions.reFormatAfterChange": true,
+
+  "vim.leader": " ",
+  "vim.useCtrlKeys": true,
+  // "vim.foldfix": true, // error index 0 on new line
+  "vim.hlsearch": true,
+
+  "editor.cursorSurroundingLines": 10,
+  "extensions.experimental.affinity": { "vscodevim.vim": 1 },
+  "editor.lineNumbers": "relative",
+
+  "vim.insertModeKeyBindingsNonRecursive": [
+    { "before": ["j", "k"], "after": ["<Esc>"], "silent": true }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["<C-d>"], "after": ["<C-d>", "z", "z"], "silent": true },
+    { "before": ["<C-u>"], "after": ["<C-u>", "z", "z"], "silent": true },
+    { "before": ["<leader>", "n", "h"], "commands": [":nohl"], "silent": true },
+    // { "before": ["<leader>", "e"], "commands": ["workbench.action.toggleSidebarVisibility"], "silent": true },
+    { "before": ["<leader>", "e"], "commands": ["workbench.files.action.focusFilesExplorer"], "silent": true },
+    { "before": ["<leader>", "q"], "commands": ["workbench.action.closeActiveEditor"], "silent": true },
+    { "before": ["<leader>", "f", "m"], "commands": ["editor.action.format"], "silent": true },
+
+    { "before": ["<leader>", "p"], "after": ["\"", "+", "p"], "silent": true },
+    { "before": ["<leader>", "P"], "after": ["\"", "+", "P"], "silent": true },
+
+    { "before": ["g", "d"], "commands": ["editor.action.goToDeclaration"], "silent": true },
+    { "before": ["g", "t"], "commands": ["editor.action.goToTypeDefinition"], "silent": true },
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"], "silent": true },
+    { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"], "silent": true },
+    { "before": ["K"], "commands": ["editor.action.showDefinitionPreviewHover"], "silent": true },
+    { "before": ["]", "d"], "commands": ["editor.action.marker.nextInFiles"], "silent": true },
+    { "before": ["[", "d"], "commands": ["editor.action.marker.prevInFiles"], "silent": true },
+    { "before": ["<leader>", "c", "a"], "commands": ["editor.action.quickFix"], "silent": true },
+    { "before": ["<leader>", "r", "n"], "commands": ["editor.action.rename"], "silent": true },
+
+    { "before": ["<leader>", "s", "v"], "commands": ["workbench.action.splitEditor"], "silent": true },
+    { "before": ["<leader>", "s", "h"], "commands": ["workbench.action.splitEditorDown"], "silent": true },
+    // { "before": ["<leader>", "s", "m"], "commands": ["workbench.action.toggleMaximizedPanel"], "silent": true },
+    { "before": ["<C-j>"], "after": ["<C-w>", "j"], "silent": true },
+    { "before": ["<C-k>"], "after": ["<C-w>", "k"], "silent": true },
+    { "before": ["<C-l>"], "after": ["<C-w>", "l"], "silent": true },
+    { "before": ["<C-h>"], "after": ["<C-w>", "h"], "silent": true },
+
+    { "before": ["<leader>", "r", "p"], "commands": ["editor.action.startFindReplaceAction"], "silent": true },
+    { "before": ["<leader>", "f", "f"], "commands": ["workbench.action.quickOpen"], "silent": true },
+    { "before": ["<leader>", "f", "s"], "commands": ["workbench.action.findInFiles"], "silent": true },
+
+    { "before": ["<C-n>"], "commands": ["editor.action.addSelectionToNextFindMatch"], "silent": true },
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["<leader>", "y"], "after": ["\"", "+", "y"], "silent": true },
+    { "before": ["p"], "after": ["\"", "_", "d", "P"], "silent": true },
+    { "before": ["<leader>", "p"], "after": ["\"", "_", "d", "\"", "+", "P"], "silent": true },
+
+    { "before": ["<leader>", "r", "p"], "commands": ["editor.action.startFindReplaceAction"], "silent": true },
+
+    { "before": ["<C-n>"], "commands": ["editor.action.addSelectionToNextFindMatch"], "silent": true },
+  ],
+
+  "github.copilot.advanced": {
+    "authProvider": "github"
+  }
+}
+
