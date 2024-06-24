@@ -25,10 +25,8 @@
 
   "explorer.confirmDelete": false,
   "files.autoSave": "onFocusChange",
-  "editor.fontSize": 19,
+  "editor.fontSize": 25,
   "workbench.iconTheme": "material-icon-theme",
-
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -64,8 +62,7 @@
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "files.exclude": {
     "**/bin": true,
-    "**/obj": true,
-    "**/node_modules": true,
+    "**/obj": true
   },
 
   "angular.enable-strict-mode-prompt": false,
@@ -73,12 +70,12 @@
   "editor.renderWhitespace": "all",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.fontVariations": false,
-  "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, JetBrainsMono NF",
+  // "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, JetBrainsMono NF",
+  "editor.fontFamily": "JetBrainsMono NF",
   "terminal.integrated.fontFamily": "JetBrainsMono NF",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "dotnet.inlayHints.enableInlayHintsForParameters": true,
   "dotnet.inlayHints.enableInlayHintsForIndexerParameters": true,
-  "workbench.colorTheme": "Rosé Pine",
   "workbench.editor.empty.hint": "hidden",
   "editor.minimap.enabled": false,
   "csharpextensions.useThisForCtorAssignments": false,
@@ -95,8 +92,16 @@
   "extensions.experimental.affinity": { "vscodevim.vim": 1 },
   "editor.lineNumbers": "relative",
 
+  "vim.handleKeys": {
+    "<C-b>": false,
+  },
+
   "vim.insertModeKeyBindingsNonRecursive": [
-    { "before": ["j", "k"], "after": ["<Esc>"], "silent": true }
+    { "before": ["j", "k"], "after": ["<Esc>"], "silent": true },
+    { "before": ["<C-j>"], "after": ["<Enter>"], "silent": true },
+    { "before": ["¬"], "commands": ["editor.action.inlineSuggest.commit"], "silent": true },
+    { "before": ["‘"], "commands": ["github.copilot.nextPanelSolution"], "silent": true },
+    { "before": ["“"], "commands": ["github.copilot.previousPanelSolution"], "silent": true },
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     { "before": ["<C-d>"], "after": ["<C-d>", "z", "z"], "silent": true },
@@ -106,6 +111,8 @@
     { "before": ["<leader>", "e"], "commands": ["workbench.files.action.focusFilesExplorer"], "silent": true },
     { "before": ["<leader>", "q"], "commands": ["workbench.action.closeActiveEditor"], "silent": true },
     { "before": ["<leader>", "f", "m"], "commands": ["editor.action.format"], "silent": true },
+    { "before": ["¬"], "commands": ["workbench.action.nextEditor"], "silent": true },
+    { "before": ["˙"], "commands": ["workbench.action.previousEditor"], "silent": true },
 
     { "before": ["<leader>", "p"], "after": ["\"", "+", "p"], "silent": true },
     { "before": ["<leader>", "P"], "after": ["\"", "+", "P"], "silent": true },
@@ -133,6 +140,14 @@
     { "before": ["<leader>", "f", "s"], "commands": ["workbench.action.findInFiles"], "silent": true },
 
     { "before": ["<C-n>"], "commands": ["editor.action.addSelectionToNextFindMatch"], "silent": true },
+
+    // Debug
+    { "before": ["<leader>", "b"], "commands": ["editor.debug.action.toggleBreakpoint"], "silent": true },
+    { "before": ["<leader>", "d", "n"], "commands": ["workbench.action.debug.continue", "workbench.action.debug.continue"], "silent": true },
+    { "before": ["<leader>", "d", "c"], "commands": ["workbench.action.debug.stop"], "silent": true },
+    { "before": ["<leader>", "d", "j"], "commands": ["workbench.action.debug.stepInto"], "silent": true },
+    { "before": ["<leader>", "d", "k"], "commands": ["workbench.action.debug.stepOut"], "silent": true },
+    { "before": ["<leader>", "d", "l"], "commands": ["workbench.action.debug.stepOver"], "silent": true },
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     { "before": ["<leader>", "y"], "after": ["\"", "+", "y"], "silent": true },
@@ -142,10 +157,15 @@
     { "before": ["<leader>", "r", "p"], "commands": ["editor.action.startFindReplaceAction"], "silent": true },
 
     { "before": ["<C-n>"], "commands": ["editor.action.addSelectionToNextFindMatch"], "silent": true },
+
+    { "before": ["<"], "after": ["<", "g", "v"], "silent": true },
+    { "before": [">"], "after": [">", "g", "v"], "silent": true },
   ],
-
-  "github.copilot.advanced": {
-    "authProvider": "github"
-  }
+  "workbench.colorTheme": "Rosé Pine",
+  "[csharp]": {
+    "editor.defaultFormatter": "csharpier.csharpier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
-
