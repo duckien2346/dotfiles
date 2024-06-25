@@ -1,0 +1,47 @@
+[
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+\\",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "alt+l",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "alt+h",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    "key": "alt+a",
+    "command": "vscode-harpoon.addEditor"
+  },
+  {
+    "key": "alt+m",
+    "command": "vscode-harpoon.editEditors"
+  },
+  {
+    "key": "alt+1",
+    "command": "vscode-harpoon.gotoEditor1"
+  },
+  {
+    "key": "alt+2",
+    "command": "vscode-harpoon.gotoEditor2"
+  },
+  {
+    "key": "alt+3",
+    "command": "vscode-harpoon.gotoEditor3"
+  },
+  {
+    "key": "alt+4",
+    "command": "vscode-harpoon.gotoEditor4"
+  },
+  {
+    "key": "alt+5",
+    "command": "vscode-harpoon.gotoEditor5"
+  }
+]
