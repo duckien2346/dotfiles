@@ -183,9 +183,13 @@ cmd info &{{
 }}
 
 cmd get-size ${{
-    df -h | grep "Use\|home\|media"
+    echo "Getting Size... '$(dirname $f)'"
+    # df -h | grep "Use\|home\|media"
+    lines=${1-20}
+    du -a --si . | sort -h | tail -n $lines
+    echo "Dir: '$(dirname $f)'"
     read
 }}
-map S get-size
+map S push :get-size<space>20
 
 map P :push $mpv<space>*.mp4
