@@ -1,43 +1,38 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
-else
-    folders=" "
-    folders+="/Users /Users/kien /Users/kien/.config "
+folders=" "
+folders+="$(dirname $HOME) $HOME $HOME/.config "
+folders+="$HOME/Workspaces "
+folders+="$HOME/Workspaces/HK6 "
 
-    folders+="/Users/kien/Workspaces "
-    folders+="/Users/kien/Workspaces/dotnet "
-    folders+="/Users/kien/Workspaces/HK6 "
-    folders+="/Users/kien/Workspaces/flutter "
-
-    selected=$(find $folders -mindepth 1 -maxdepth 1 -type d | fzf)
-    if [[ -z $selected ]]; then
-        exit 0
-    fi
+selected=$(find $folders -mindepth 1 -maxdepth 1 -type d | fzf)
+if [[ -z $selected ]]; then
+    exit 0
 fi
 
-
-selected_name=$(basename "$selected" | tr . _ | tr '[:upper:]' '[:lower:]')
+bn_selected=$(basename "$selected" | tr . _ | tr '[:upper:]' '[:lower:]')
+bn_parent=$(basename $(dirname "$selected") | tr . _ | tr '[:upper:]' '[:lower:]')
 tmux_running=$(pgrep tmux)
-parent=$(dirname "$selected")
 
-if [[ $parent == "/Users/kien/.config" ]]; then
-    parent_name=$(basename "$parent" | tr . _ | tr '[:upper:]' '[:lower:]')
-    target="$parent_name:$selected_name"
+# create window instead of session
+windows_array=("_config" "workspaces")
+if [[ ${windows_array[@]} == *"$bn_parent"* ]]; then
+    target="$bn_parent:$bn_selected"
     tmux switch-client -t $target || \
-        tmux neww -n $selected_name -t "$parent_name:" -c $selected && \
+        tmux neww -n $bn_selected -t "$bn_parent:" -c $selected && \
             tmux switch-client -t $target
     exit 0
 fi
 
+# create new session
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
+    tmux new-session -s $bn_selected -c $selected
     exit 0
 fi
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
+if ! tmux has-session -t=$bn_selected 2> /dev/null; then
+    tmux new-session -ds $bn_selected -c $selected
 fi
 
-tmux switch-client -t $selected_name
+# switch client
+tmux switch-client -t $bn_selected
