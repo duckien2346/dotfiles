@@ -1,11 +1,11 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export EDITOR=nvim
+export EDITOR="nvim"
 
 # dotnet
-export DOTNET_ROOT=$HOME/dotnet
-export PATH=$PATH:$HOME/dotnet
-export PATH=$PATH:$HOME/.dotnet/tools
+export DOTNET_ROOT="$HOME/dotnet"
+export PATH="$PATH:$HOME/dotnet"
+export PATH="$PATH:$HOME/.dotnet/tools"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -23,13 +23,13 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # rclone
-export PATH=$PATH:$HOME/rclone
+export PATH="$PATH:$HOME/rclone"
 
 # Added by Toolbox App
 export PATH="$PATH:/Users/kien/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # flutter
-export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
 
 # jdk
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/oracle-jdk-21.0.3"
@@ -38,3 +38,6 @@ export CPPFLAGS="-I/Library/Java/JavaVirtualMachines/oracle-jdk-21.0.3/include"
 
 # fzf
 source <(fzf --zsh)
+
+# personal scripts
+export PATH="$PATH:$HOME/scripts"
