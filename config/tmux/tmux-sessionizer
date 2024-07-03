@@ -3,6 +3,7 @@
 folders=" "
 folders+="$(dirname $HOME) $HOME $HOME/.config "
 folders+="$HOME/Workspaces "
+folders+="$HOME/Workspaces/personal "
 folders+="$HOME/Workspaces/HK6 "
 
 selected=$(find $folders -mindepth 1 -maxdepth 1 -type d | fzf)
@@ -15,7 +16,7 @@ bn_parent=$(basename $(dirname "$selected") | tr . _ | tr '[:upper:]' '[:lower:]
 tmux_running=$(pgrep tmux)
 
 # create window instead of session
-windows_array=("_config" "workspaces")
+windows_array=("_config" "personal")
 if [[ ${windows_array[@]} == *"$bn_parent"* ]]; then
     target="$bn_parent:$bn_selected"
     tmux switch-client -t $target || \
