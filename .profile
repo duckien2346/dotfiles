@@ -1,4 +1,3 @@
-
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export EDITOR=nvim
@@ -36,3 +35,6 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/oracle-jdk-21.0.3"
 export PATH="$PATH:/Library/Java/JavaVirtualMachines/oracle-jdk-21.0.3/bin"
 export CPPFLAGS="-I/Library/Java/JavaVirtualMachines/oracle-jdk-21.0.3/include"
+
+# fzf
+source <(fzf --zsh)
