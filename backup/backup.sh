@@ -34,6 +34,6 @@ message+="$changes"
 
 echo "start: backup $n_changes files"
 echo "$message"
-# git commit -m "$message"
-# gpush
+git commit -m "$message"
+gpush
 echo $'end: backup completed\n'
