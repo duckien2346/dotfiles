@@ -18,5 +18,5 @@ for project in ${projects[@]}; do
         exit 1
     fi
     echo "start: backup $project"
-    bash $dotfiles/backup/backup.sh "$project"
+    bash $dotfiles/backup/git-push.sh "$project"
 done
