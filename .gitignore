@@ -2,6 +2,7 @@
 luac.out
 .ssh
 ./config/nvim
+./config/rclone/rclone.conf
 
 # luarocks build files
 *.src.rock
