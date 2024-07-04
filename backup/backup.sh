@@ -22,7 +22,7 @@ fi
 git add .
 
 changes=$(git diff --name-only --staged | xargs -I {} echo "  - {}")
-n_changes=$(echo "$changes" | wc -l | xargs)
+n_changes=$(echo "$changes" | sed '/^\s*$/d' | wc -l | xargs)
 if [ $n_changes -eq 0 ]; then
     echo "info: No changes to backup"
     exit 1
