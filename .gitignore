@@ -2,6 +2,7 @@
 luac.out
 .ssh
 config/rclone/rclone.conf
+backup/backup.log
 
 # luarocks build files
 *.src.rock
