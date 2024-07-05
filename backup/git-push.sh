@@ -10,21 +10,9 @@ main() {
     current=$(date +'%Y-%m-%d %H:%M:%S')
     echo "check: dir $(pwd)"
     echo "check: time $current"
-    message="backup: $current"
-    message+=$'\n'
 
-    hasChanges
-    local n_changes=$(echo "$message" | wc -l | xargs)
-    echo "start: backup $((n_changes - 1)) files"
-    echo "git: add ."
-    git add . > /dev/null
-    echo "git: commit -m \"$message\""
-    git commit -m "$message" > /dev/null
-
-    hasNewCommits
-    echo "git: push origin $current_branch"
-    git push origin "$current_branch"
-    echo $'end: git push completed'
+    gitCommit
+    gitPush
 }
 
 isDir() {
@@ -54,11 +42,28 @@ hasChanges() {
         echo "info: No changes to Commit"
         exit 1
     fi
+    local message="backup: $current"
+    message+=$'\n'
     message+="$changes"
+    echo "$message"
+}
+
+gitCommit() {
+    local message=$(hasChanges)
+    if [[ "$message" =~ "info" || "$message" =~ "error" ]]; then
+        echo "$message"
+    else
+        local n_changes=$(echo "$message" | wc -l | xargs)
+        echo "start: backup $((n_changes - 1)) files"
+        echo "git: add ."
+        git add . > /dev/null
+        echo "git: commit -m \"$message\""
+        git commit -m "$message" > /dev/null
+    fi
 }
 
 hasNewCommits() {
-    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    local current_branch=$(git rev-parse --abbrev-ref HEAD)
     local remote_branch="origin/$current_branch"
     local has_remote=$(git branch -r | grep "$remote_branch" | wc -l)
     if [ $has_remote -eq 0 ]; then
@@ -70,6 +75,18 @@ hasNewCommits() {
         echo "info: No new commits to push"
         exit 1
     fi
+    echo "$current_branch"
+}
+
+gitPush() {
+    local message=$(hasNewCommits)
+    if [[ "$message" =~ "info" || "$message" =~ "error" ]]; then
+        echo "$message"
+        exit 1
+    fi
+    echo "git: push origin $message"
+    git push origin "$message"
+    echo $'end: git push completed'
 }
 
 main "$@"
