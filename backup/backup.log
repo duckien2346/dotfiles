@@ -1,0 +1,5 @@
+start: backup /Users/kien/Workspaces/personal/dotfiles
+check: dir /Users/kien/Workspaces/personal/dotfiles
+check: time 2024-07-05 22:21:02
+start: backup 2 files
+git: add .
