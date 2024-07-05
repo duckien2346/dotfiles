@@ -1,2 +1,2 @@
-00 20 * * * /bin/bash $HOME/Workspaces/personal/dotfiles/backup/time-schedule.sh >> $HOME/Workspaces/personal/dotfiles/backup/backup.log
+00 20 * * * /bin/bash $HOME/backup/time-schedule.sh >> $HOME/backup/backup.log
 
