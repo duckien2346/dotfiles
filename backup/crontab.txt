@@ -1,1 +1,2 @@
-20 22 * * * /bin/bash /Users/kien/Workspaces/personal/dotfiles/backup/time-schedule.sh > /Users/kien/Workspaces/personal/dotfiles/backup/backup.log
+00 20 * * * /bin/bash $HOME/Workspaces/personal/dotfiles/backup/time-schedule.sh >> $HOME/Workspaces/personal/dotfiles/backup/backup.log
+

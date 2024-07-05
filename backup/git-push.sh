@@ -8,7 +8,6 @@ main() {
 
     isGitDir
     current=$(date +'%Y-%m-%d %H:%M:%S')
-    echo "check: dir $(pwd)"
     echo "check: time $current"
 
     gitCommit
