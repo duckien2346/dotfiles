@@ -85,7 +85,7 @@ gitPush() {
         exit 1
     fi
     echo "git: push origin $message"
-    git push origin "$message"
+    git push origin "$message" > /dev/null
     echo $'end: git push completed'
 }
 
