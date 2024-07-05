@@ -1,8 +1,7 @@
 # Compiled Lua sources
 luac.out
 .ssh
-./config/nvim
-./config/rclone/rclone.conf
+config/rclone/rclone.conf
 
 # luarocks build files
 *.src.rock
