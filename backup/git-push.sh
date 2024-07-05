@@ -34,9 +34,9 @@ isGitDir() {
 }
 
 hasChanges() {
-    git add . > /dev/null
+    git add . &> /dev/null
     local changes=$(git diff --name-only --staged | xargs -I {} echo "  - {}")
-    git reset > /dev/null
+    git reset &> /dev/null
     local n_changes=$(echo "$changes" | sed '/^\s*$/d' | wc -l | xargs)
     if [ $n_changes -eq 0 ]; then
         echo "info: No changes to Commit"
@@ -56,9 +56,9 @@ gitCommit() {
         local n_changes=$(echo "$message" | wc -l | xargs)
         echo "start: backup $((n_changes - 1)) files"
         echo "git: add ."
-        git add . > /dev/null
+        git add . &> /dev/null
         echo "git: commit -m \"$message\""
-        git commit -m "$message" > /dev/null
+        git commit -m "$message" &> /dev/null
     fi
 }
 
@@ -85,7 +85,7 @@ gitPush() {
         exit 1
     fi
     echo "git: push origin $message"
-    git push origin "$message" > /dev/null
+    git push origin "$message" &> /dev/null
     echo $'end: git push completed'
 }
 
