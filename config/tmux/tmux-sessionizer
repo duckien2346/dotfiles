@@ -12,12 +12,21 @@ if [[ -z $selected ]]; then
 fi
 
 bn_selected=$(basename "$selected" | tr . _ | tr '[:upper:]' '[:lower:]')
-bn_parent=$(basename $(dirname "$selected") | tr . _ | tr '[:upper:]' '[:lower:]')
+parent=$(dirname "$selected")
+bn_parent=$(basename "$parent" | tr . _ | tr '[:upper:]' '[:lower:]')
 tmux_running=$(pgrep tmux)
 
 # create window instead of session
-windows_array=("_config" "personal")
-if [[ ${windows_array[@]} == *"$bn_parent"* ]]; then
+attach_array=(
+    "$(basename $HOME)"
+    "_config"
+    "workspaces"
+    "personal"
+)
+if [[ ${attach_array[@]} =~ "$bn_parent" ]]; then
+    if ! tmux has-session -t=$bn_parent 2> /dev/null; then
+        tmux new-session -ds $bn_parent -c $parent
+    fi
     target="$bn_parent:$bn_selected"
     tmux switch-client -t $target || \
         tmux neww -n $bn_selected -t "$bn_parent:" -c $selected && \
