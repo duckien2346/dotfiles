@@ -23,7 +23,10 @@ attach_array=(
     "workspaces"
     "personal"
 )
-if [[ ${attach_array[@]} =~ "$bn_parent" ]]; then
+if [[
+    ${attach_array[@]} =~ "$bn_parent"
+    && ! ${attach_array[@]} =~ "$bn_selected"
+]]; then
     if ! tmux has-session -t=$bn_parent 2> /dev/null; then
         tmux new-session -ds $bn_parent -c $parent
     fi
