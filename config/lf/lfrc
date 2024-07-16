@@ -159,8 +159,11 @@ cmd create-tmux-window %{{
 
 # copy path to clipboard
 cmd copy-path &{{
-    # echo -n $f | xclip -selection primary
-    echo -n $f | xclip -selection clipboard
+    case $(echo "$HOME") in
+        /home/*) echo -n "$f" | xclip -selection clipboard;;
+        /Users/*) echo "$f" | pbcopy;;
+        *) echo "$f" | Set-Clipboard;;
+    esac
     lf -remote "send $id %echo \"copied path: '$f'\""
 }}
 map ç copy-path
