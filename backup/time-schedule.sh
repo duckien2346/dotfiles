@@ -4,12 +4,14 @@ dotfiles=$HOME/Workspaces/personal/dotfiles
 nvim=$HOME/.config/nvim
 notes=$HOME/Workspaces/personal/notes
 pass=$HOME/.password-store
+music=$HOME/Workspaces/personal/music
 
 projects=(
     "$dotfiles"
     "$nvim"
     "$notes"
     "$pass"
+    "$music"
 )
 
 for project in ${projects[@]}; do
