@@ -191,6 +191,7 @@ cmd get-size ${{
     lines=${1-20}
     du -a --si . | sort -h | tail -n $lines
     echo "Dir: '$(dirname $f)'"
+    df -H ~
     read
 }}
 map S push :get-size<space>20
