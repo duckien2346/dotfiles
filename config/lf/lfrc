@@ -196,7 +196,10 @@ cmd get-size ${{
 }}
 map S push :get-size<space>20
 
-map P :push $mpv<space>*.mp4
+cmd play-mpv ${{
+    ls *.mp4 | sort -V | mpv --playlist=-
+}}
+map P :push :play-mpv<space>
 
 cmd anime ${{
     webtorrent "$(pbpaste)" --mpv --player-args="--volume=90"
