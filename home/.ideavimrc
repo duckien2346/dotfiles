@@ -41,7 +41,6 @@ vnoremap <leader>p "_d"+P
 vnoremap p "_dP
 
 " mapping
-nmap <C-w> <action>(CloseEditor)
 nmap <C-s> :w<CR>
 
 nmap <leader>nh :nohl<CR>
