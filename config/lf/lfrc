@@ -29,10 +29,10 @@ map ` !true
 # execute current file (must be executable)
 # change to remove
 cmd trash %[ ${2-y} = "y" ] && trash -v $fx
-map d push :trash<space>([y]/n)<space>
+map T push :trash<space>([y]/n)<space>
 
 cmd remove %[ ${2-y} = "y" ] && rm -rv $fx
-map D push :remove<space>([y]/n)<space>
+map R push :remove<space>([y]/n)<space>
 map x cut
 
 # define a custom 'open' command
@@ -50,7 +50,7 @@ cmd open &{{
 map o open
 
 # mkdir command. See wiki if you want it to select created dir
-map a :push %mkdir<space>-p<space>
+map d :push %mkdir<space>-p<space>
 
 # define a custom 'rename' command without prompt for overwrite
 cmd rename %[ -e $1 ] && printf "file exists" || mv -v $f $1

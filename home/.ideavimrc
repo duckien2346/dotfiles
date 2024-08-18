@@ -27,6 +27,7 @@ set ideajoin
 "set easymotion
 set multiple-cursors
 set highlightedyank
+set visualbell
 
 " set <leader> to <space>
 let mapleader = " "
@@ -129,5 +130,5 @@ let g:multi_cursor_skip_key            = "<C-x>"
 let g:multi_cursor_quit_key            = "<Esc>"
 
 " vim-highlightedyank
-let g:highlightedyank_highlight_duration = 1
-let g:highlightedyank_highlight_color = "rgba(160, 0, 0, 160)"
+let g:highlightedyank_highlight_duration = 100
+let g:highlightedyank_highlight_color = "rgba(25, 200, 230, 255)"
