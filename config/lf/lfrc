@@ -32,7 +32,7 @@ cmd trash %[ ${2-y} = "y" ] && trash -v $fx
 map T push :trash<space>([y]/n)<space>
 
 cmd remove %[ ${2-y} = "y" ] && rm -rv $fx
-map R push :remove<space>([y]/n)<space>
+map D push :remove<space>([y]/n)<space>
 map x cut
 
 # define a custom 'open' command
