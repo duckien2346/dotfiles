@@ -197,7 +197,7 @@ cmd get-size ${{
 map S push :get-size<space>20
 
 cmd play-mpv ${{
-    ls *.mp4 | sort -V | mpv --playlist=-
+    ls *.{mp4,mkv} | sort -V | mpv --playlist=-
 }}
 map P :push :play-mpv<space>
 
