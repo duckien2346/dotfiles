@@ -4,6 +4,7 @@ $username\
 $directory\
 $git_branch\
 $git_status\
+$conda\
 [  ](fg:#674ea7)\
 """
 
@@ -64,3 +65,10 @@ untracked = "[?$count ](#9cd26d)"
 ahead = '⇡$count '
 diverged = '⇕⇡$ahead_count⇣$behind_count '
 behind = '⇣$count '
+
+[conda]
+symbol = "🅒 "
+format = "[$symbol$environment]($style) "
+style = "bold green"
+ignore_base = true
+
