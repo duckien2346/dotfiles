@@ -61,11 +61,12 @@ vmap > >gv
 vmap < <gv
 " window navigation
 nnoremap <C-j> <C-w>j
-inoremap <C-j> <CR>
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 sethandler <C-l> n:vim i:ide
+sethandler <C-j> n:vim i:ide
+sethandler <C-k> n:vim i:ide
 
 " screen management
 nmap <leader>sv <action>(SplitVertically)
