@@ -1,37 +1,30 @@
 " search for actions: :actionlist <pattern>
 
 
-set number                        " line numbers
-set relativenumber                " relative line numberus
-
-set hlsearch                      " highlight search occurrences
-set ignorecase                    " ignore case in search patterns
-set smartcase                     " no ignore case when pattern is uppercase
-set incsearch                     " show search results while typing
-set wrapscan                      " searches wrap around the end of the file
+set number relativenumber
+set hlsearch
+set incsearch
+set ignorecase smartcase
+set scrolloff=8 sidescrolloff=60 colorcolumn=60
+set foldmethod=indent
 set nocursorline
-
-set gdefault                      " substitute all occurrences in line per default
-set history=10000                 " keep x lines of command line history
-set scrolloff=8 sidescrolloff=60  " keep some lines before and after the cursor visible
-set clipboard=ideaput,autoselect,exclude:cons\|linux " ideaput,autoselect,exclude:cons\|linux
-set colorcolumn=60                " show vertical line at 60th column
-set foldmethod=indent             " fold based on indent
-
-" https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
-set NERDTree
-set commentary
-set surround                      " emulate vim-surround plugin
-set ideajoin
-"set ideastatusicon=disabled
-"set easymotion
-set multiple-cursors
-set highlightedyank
 set visualbell
 
-" set <leader> to <space>
+
+
+""" Mappings
+
 let mapleader = " "
 inoremap jk <ESC>
+
+nmap <C-s> :w<CR>
+nmap <leader>nh :nohl<CR>
+nmap <leader>q <action>(CloseEditor)
+nmap Q <action>(CloseAllEditorsButActive)
+
+nmap <C-d> <C-d>zz
+nmap <C-u> <C-u>zz
+
 " yank, paste
 "vnoremap <leader>y "+y
 noremap <leader>y "+y
@@ -40,35 +33,20 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "_d"+P
 vnoremap p "_dP
 
-" mapping
-nmap <C-s> :w<CR>
-
-nmap <leader>nh :nohl<CR>
-
-nmap <leader>q <action>(CloseEditor)
-nmap Q <action>(CloseAllEditorsButActive)
-
-nmap <C-d> <C-d>zz
-nmap <C-u> <C-u>zz
-
-" tab navigation
-nmap <M-h> <action>(PreviousTab)
-nmap <M-l> <action>(NextTab)
-" Lines navigation
+" Lines
 map <M-j> <action>(MoveLineDown)
 map <M-k> <action>(MoveLineUp)
 vmap > >gv
 vmap < <gv
-" window navigation
+
+" window
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-sethandler <C-l> n:vim i:ide
-sethandler <C-j> n:vim i:ide
-sethandler <C-k> n:vim i:ide
+sethandler <C-l> n:vim i:ide "copilot completion in insert mode
 
-" screen management
+" screen
 nmap <leader>sv <action>(SplitVertically)
 nmap <leader>sh <action>(SplitHorizontally)
 nmap <leader>sx <action>(Unsplit)
@@ -79,7 +57,6 @@ map <leader>rp <action>(Replace)
 " Go to
 nmap ]d <action>(GotoNextError)
 nmap [d <action>(GotoPreviousError)
-
 nmap gD <action>(GotoDefinition)
 nmap gd <action>(GotoDeclaration)
 nmap gt <Action>(GotoTypeDeclaration)
@@ -88,11 +65,6 @@ nmap gr <action>(ShowUsages)
 
 " Debug
 nmap <leader>b <action>(ToggleLineBreakpoint)
-nmap <leader>j <action>(StepInto)
-nmap <leader>k <action>(StepOut)
-nmap <leader>l <action>(StepOver)
-nmap <leader>dc <action>(Stop)
-nmap <leader>dn <action>(Debug)
 
 " Actions
 nmap <leader>ca <action>(ShowIntentionActions)
@@ -111,24 +83,32 @@ nmap <leader>hx <action>(Vcs.RollbackChangedLines)
 nmap <leader>hd <action>(VcsShowCurrentChangeMarker)
 nmap <leader>hh <action>(Vcs.ShowDiffChangedLines)
 
+
+
+"""" Plugins
+set ideajoin
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+
 " NERDTree
+Plug 'preservim/nerdtree'
 let g:NERDTreeFileLines = 1
 let g:NERDTreeMapActivateNode="l"
 let g:NERDTreeMapPreview="<Tab>"
 let g:NERDTreeMapJumpParent="h"
 let g:NERDTreeMapOpenSplit="X"
 let g:NERDTreeMapOpenVSplit="V"
-"nmap <leader>e :NERDTreeToggle<CR>
-" nnoremap <C-e> :NERDTreeFind<CR>
 
 " vim-multiple-cursors
-set selection=inclusive
-let g:multi_cursor_start_word_key      = "<C-n>"
-let g:multi_cursor_next_key            = "<C-n>"
-let g:multi_cursor_prev_key            = "<C-p>"
-let g:multi_cursor_skip_key            = "<C-x>"
-let g:multi_cursor_quit_key            = "<Esc>"
+Plug 'terryma/vim-multiple-cursors'
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+xmap <C-q> <Plug>SkipOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
 
 " vim-highlightedyank
+Plug 'machakann/vim-highlightedyank'
 let g:highlightedyank_highlight_duration = 100
 let g:highlightedyank_highlight_color = "rgba(25, 200, 230, 255)"
