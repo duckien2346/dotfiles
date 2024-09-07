@@ -26,7 +26,7 @@ unset __conda_setup
 export PATH="$PATH:$HOME/rclone"
 
 # Added by Toolbox App
-export PATH="$PATH:/Users/kien/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # flutter
 export PATH="$PATH:$HOME/.pub-cache/bin"
