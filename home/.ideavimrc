@@ -22,8 +22,12 @@ nmap <leader>nh :nohl<CR>
 nmap <leader>q <action>(CloseEditor)
 nmap Q <action>(CloseAllEditorsButActive)
 
-nmap <C-d> <C-d>zz
-nmap <C-u> <C-u>zz
+" move cursor
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
 
 " yank, paste
 "vnoremap <leader>y "+y
