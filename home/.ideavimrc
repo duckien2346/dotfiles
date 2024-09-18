@@ -7,7 +7,7 @@ set incsearch
 set ignorecase smartcase
 set scrolloff=8 sidescrolloff=60 colorcolumn=60
 set foldmethod=indent
-set nocursorline
+set nocursorline cursorlineopt=number
 set visualbell
 
 
