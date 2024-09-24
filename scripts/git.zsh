@@ -1,4 +1,10 @@
 
+function gc() {
+    git checkout $@
+}
+function gcb() {
+    git checkout -b $@
+}
 function gcd() {
     current=$(git_current_branch)
     target="${1-$(git_main_branch)}"
@@ -8,10 +14,10 @@ function gcd() {
     git branch -D $current
 }
 function ggl() {
-    git pull --rebase origin "$(git_current_branch)"
+    git pull origin "$(git_current_branch)" $@
 }
 function ggp() {
-    git push origin "$(git_current_branch)"
+    git push origin "$(git_current_branch)" $@
 }
 function git_current_branch () {
         local ref
