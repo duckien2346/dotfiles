@@ -1,11 +1,7 @@
 
-function gc() {
-    git checkout ${1-$(git_main_branch)} ${@:2}
-}
-function gcb() {
-    [ -z $1 ] && echo "Usage: gcb <branch_name>"; return 1
-    git checkout -b $1 ${@:2}
-}
+alias gb='git branch'
+alias gc='git checkout'
+alias gcb='git checkout -b'
 function gcd() {
     current=$(git_current_branch)
     target=$(git_main_branch)
