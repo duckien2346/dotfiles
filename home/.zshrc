@@ -4,9 +4,9 @@
 
 ### ZSH CONFIGURATION ###
 if [[ -d "$HOME/scripts" ]]; then
-  for script in $HOME/scripts/*; do
-    [[ -x $script ]] && source $script
-  done
+    for script in $HOME/scripts/*; do
+        [[ -x $script ]] && source $script
+    done
 fi
 
 
@@ -15,27 +15,27 @@ fi
 
 # homebrew
 function completion_brew() {
-  if type brew &>/dev/null
-  then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    autoload -Uz compinit
-    compinit
-  fi
+    if type brew &>/dev/null
+    then
+        FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+        autoload -Uz compinit
+        compinit
+    fi
 }
 
 # fzf
 function completion_fzf() {
-  [[ $(command -v fzf) ]] && source <(fzf --zsh)
+    [[ $(command -v fzf) ]] && source <(fzf --zsh)
 }
 
 # Load Angular CLI autocompletion.
 function completion_ng() {
-  [[ $(command -v ng) ]] && source <(ng completion script)
+    [[ $(command -v ng) ]] && source <(ng completion script)
 }
 
 # Load docker autocompletion.
 function completion_docker() {
-  [[ $(command -v docker) ]] && source <(docker completion zsh)
+    [[ $(command -v docker) ]] && source <(docker completion zsh)
 }
 completion_docker
 
