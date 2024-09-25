@@ -1,23 +1,24 @@
 
 function gc() {
-    git checkout $@
+    git checkout ${1-$(git_main_branch)} ${@:2}
 }
 function gcb() {
-    git checkout -b $@
+    [ -z $1 ] && echo "Usage: gcb <branch_name>"; return 1
+    git checkout -b $1 ${@:2}
 }
 function gcd() {
     current=$(git_current_branch)
-    target="${1-$(git_main_branch)}"
+    target=$(git_main_branch)
 
     git checkout $target
     git pull origin $target
     git branch -D $current
 }
 function ggl() {
-    git pull origin "$(git_current_branch)" $@
+    git pull origin ${1-$(git_current_branch)} ${@:2}
 }
 function ggp() {
-    git push origin "$(git_current_branch)" $@
+    git push origin ${1-$(git_current_branch)} ${@:2}
 }
 function git_current_branch () {
         local ref
@@ -45,8 +46,8 @@ function git_main_branch () {
         return 1
 }
 function glg() {
-    git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat
+    git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat
 }
 function glo() {
-    git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all
+    git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all
 }
