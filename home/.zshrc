@@ -4,7 +4,7 @@
 
 ### ZSH CONFIGURATION ###
 if [[ -d "$HOME/scripts" ]]; then
-    for script in $HOME/scripts/*; do
+    for script in $HOME/scripts/*.{sh,zsh}; do
         [[ -x $script ]] && source $script
     done
 fi
