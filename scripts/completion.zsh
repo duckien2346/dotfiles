@@ -23,11 +23,9 @@ function completion_ng() {
 function completion_docker() {
     [[ $(command -v docker) ]] && source <(docker completion zsh)
 }
-completion_docker
 
 # Load Kubernetes autocompletion.
 function completion_kubectl() {
     [[ $(command -v kubectl) ]] && source <(kubectl completion zsh)
 }
-completion_kubectl
 
