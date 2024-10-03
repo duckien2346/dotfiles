@@ -1,14 +1,16 @@
 
+### Using fpath ###
 # homebrew
-function completion_brew() {
-    if type brew &>/dev/null
-    then
-        FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-        autoload -Uz compinit
-        compinit
-    fi
-}
+if type brew &>/dev/null
+then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
 
+### Load fpath ###
+autoload -Uz compinit
+compinit -u
+
+### Using Compdef ###
 # fzf
 function completion_fzf() {
     [[ $(command -v fzf) ]] && source <(fzf --zsh)
@@ -23,9 +25,11 @@ function completion_ng() {
 function completion_docker() {
     [[ $(command -v docker) ]] && source <(docker completion zsh)
 }
+compdef completion_docker
 
 # Load Kubernetes autocompletion.
 function completion_kubectl() {
     [[ $(command -v kubectl) ]] && source <(kubectl completion zsh)
 }
+compdef completion_kubectl kubectl
 
