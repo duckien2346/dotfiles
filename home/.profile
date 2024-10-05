@@ -40,3 +40,7 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/oracle-jdk-21.0.3"
 export PATH="$PATH:/Library/Java/JavaVirtualMachines/oracle-jdk-21.0.3/bin"
 export CPPFLAGS="-I/Library/Java/JavaVirtualMachines/oracle-jdk-21.0.3/include"
 
+# kubectl
+if [ $(command -v kubectl) ]; then
+    export KUBECONFIG="$HOME/.kube/config.yml"
+fi
