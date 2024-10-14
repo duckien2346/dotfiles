@@ -1,17 +1,17 @@
 #!/bin/bash
 
-dotfiles=$HOME/Workspaces/personal/dotfiles
 nvim=$HOME/.config/nvim
+dotfiles=$HOME/Workspaces/personal/dotfiles
 notes=$HOME/Workspaces/personal/notes
-pass=$HOME/.password-store
 music=$HOME/Workspaces/personal/music
+pass=$HOME/.password-store
 
 projects=(
-    "$dotfiles"
     "$nvim"
+    "$dotfiles"
     "$notes"
-    "$pass"
     "$music"
+    "$pass"
 )
 
 for project in ${projects[@]}; do
