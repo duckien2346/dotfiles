@@ -32,3 +32,4 @@ fi
 [[ $(command -v cursor) ]] && alias cur=cursor
 [[ $(command -v claude) ]] && alias cla=claude
 [[ $(command -v opencode) ]] && alias op=opencode
+[[ $(command -v aria2c) ]] && alias a=aria2c
